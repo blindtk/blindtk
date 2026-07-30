@@ -61,14 +61,19 @@ moving into security.
 
 ## Projects
 
-| Project | Why it's there |
-| --- | --- |
-| **[danielmala.co](https://github.com/blindtk/personal-site)** — personal site | Astro, zero client-side JavaScript by default, content kept out of the codebase (markdown/JSON), bilingual PT/EN from shared components. Ships a strict Content-Security-Policy with no `'unsafe-inline'`, security headers, and a published responsible-disclosure policy — with an *Evidence* page that deep-links commits, workflows, and a live header scan. Hosted on Cloudflare Pages; the one piece that genuinely needs a server lives isolated in a Cloudflare Worker. |
-| **Honeypot** — same monorepo, inside the Worker | Decoy endpoints (`/wp-login.php`, `/.env`, `/.git/config`, `/admin`, `/phpmyadmin/`) that log automated scanning and hand back the usual 404. Privacy by construction: **no IP is ever stored** — only country (`cf-ipcountry`), ASN, and the path, timestamped to the nearest 5 minutes; the rate-limit key is a salted, rotating, truncated SHA-256. A test enforces that the IP never reaches KV or the logs. Each decoy is tagged with its MITRE ATT&CK technique and cross-referenced against the CISA KEV catalog. |
-| **ATT&CK heatmap** | All 14 Enterprise tactics mapped to the techniques I cover defensively, each with the tool or experience behind it and an honest level (`production` vs. `lab/one-off`). The CV, written in the industry's native language. |
-| **Client-side tools** — danielmala.co/tools | Subnet calculator, hash generator and others, all running in-browser. The three that genuinely need a server (compromised-password check via k-anonymity, header self-scan, "what the server sees of you") are marked with a *requires server* badge — never disguised as client-side. |
-| **star-organizer** | Python CLI that turns a chaotic GitHub stars list into a browsable catalog by category (markdown + JSON), with a weekly GitHub Action. Feeds the site's link library. The underlying `github-stars` repo is private, so it isn't linked here — see the site's link page for the output. |
-| **Homelab** | k3s cluster on Raspberry Pi, at home. The test bed for everything before it goes anywhere near production. |
+**[danielmala.co](https://github.com/blindtk/personal-site)** is the project I keep public, and it's built the way I think infrastructure should be: least privilege by default, with every exception argued for instead of left implicit.
+
+That shows up everywhere in it — a strict Content-Security-Policy with no
+`'unsafe-inline'` clause, zero client-side JavaScript unless a feature
+genuinely needs it, and tools that call home (a compromised-password
+check via k-anonymity, a header self-scan) labeled as such instead of
+pretending to run entirely in the browser. The one piece that does need
+a server — a honeypot logging automated scanning against decoy
+endpoints — lives isolated in a Cloudflare Worker, and can't store an IP
+even if I wanted it to: only country, ASN, and path, keyed by a
+rotating salted hash. None of this is asserted on faith — the site's
+*Evidence* page deep-links the commits, workflows, and a live header
+scan behind each claim.
 
 ## Statistics
 
@@ -116,25 +121,6 @@ infrastructure, not public code.
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-danielmalaco-4aa8ff?style=flat-square&logo=linkedin&logoColor=white&labelColor=0a0d11)](https://www.linkedin.com/in/danielmalaco)
 [![Email](https://img.shields.io/badge/Email-me%40danielmala.co-f5b544?style=flat-square&logo=maildotru&logoColor=white&labelColor=0a0d11)](mailto:me@danielmala.co)
 [![Credly](https://img.shields.io/badge/Credly-badges-3ddc84?style=flat-square&labelColor=0a0d11)](https://www.credly.com/users/daniel-malaco/badges)
-
-<details>
-<summary><strong>Português (Europeu)</strong></summary>
-
-Information Security Engineer a desenhar e operar a arquitetura de
-segurança de infraestrutura crítica. Veio das redes antes de passar para a
-segurança.
-
-### O que faço
-
-- Desenho, deployment e operação da arquitetura de segurança de
-  infraestrutura crítica: NGFW, AV/EDR, análise de vulnerabilidades, SIEM,
-  IAM, WAF, security email gateway.
-- Ciclo completo de deteção: do desenho do controlo à análise do evento e
-  ao fecho do incidente em ITSM.
-- Traz uma perspetiva ofensiva para o trabalho defensivo — pensar como um
-  atacante molda o desenho e a afinação das deteções.
-
-</details>
 
 <div align="right">
 
