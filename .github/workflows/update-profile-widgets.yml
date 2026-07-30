@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout blindtk/blindtk
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Gerar banner
         run: |
@@ -61,7 +61,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checkout ryo-ma/github-profile-trophy (tag fixa v1.0)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: ryo-ma/github-profile-trophy
           ref: v1.0
