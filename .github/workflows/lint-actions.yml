@@ -1,0 +1,29 @@
+name: Lint GitHub Actions workflows
+
+# Analisa .github/workflows com zizmor (https://github.com/zizmorcore/zizmor):
+# deteta permissoes excessivas, actions nao fixadas e template-injection via
+# ${{ }} em steps `run:` — os riscos reais de um workflow com contents:write
+# e acesso a secrets.GITHUB_TOKEN. Apenas leitura, nao interfere com o
+# update-profile-widgets.yml.
+
+on:
+  push:
+    paths:
+      - ".github/workflows/**"
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  zizmor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar zizmor
+        run: pip install zizmor
+      - name: Analisar workflows
+        run: zizmor .github/workflows

@@ -11,9 +11,8 @@ networks before moving into security.
   IAM, WAF, secure email gateway.
 - Run the full detection cycle end to end — from designing the control to
   analyzing the event and closing the incident through ITSM.
-- Bring an offensive perspective into defensive work — internal penetration
-  testing experience and four CTFs won feed directly back into how I design
-  detections.
+- Bring an offensive perspective into defensive work — thinking like an
+  attacker shapes how I design and tune detections.
 - Build for redundancy, document for whoever comes next, test in staging
   before touching production — habits from infrastructure where a network
   failure is not an inconvenience, it's a stopped system.
@@ -118,9 +117,8 @@ antes de passar para a segurança.
   vulnerabilidades, SIEM, IAM, WAF, security email gateway.
 - Ciclo completo de deteção: do desenho do controlo à análise do evento e
   ao fecho do incidente em ITSM.
-- Traz uma perspetiva ofensiva para o trabalho defensivo — experiência em
-  testes de intrusão internos e quatro CTFs ganhos alimentam diretamente o
-  desenho de deteções.
+- Traz uma perspetiva ofensiva para o trabalho defensivo — pensar como um
+  atacante molda o desenho e a afinação das deteções.
 
 </details>
 
