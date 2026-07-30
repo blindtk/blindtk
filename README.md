@@ -1,7 +1,4 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&color=0:0a0d11,100:3ddc84&height=170&section=header&text=Daniel%20Malaco&fontColor=e6edf3&fontSize=42&desc=Information%20Security%20Engineer%20%C2%B7%20Porto%2C%20PT&descSize=16&descAlignY=68&animation=false" />
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0d11,100:3ddc84&height=170&section=header&text=Daniel%20Malaco&fontColor=e6edf3&fontSize=42&desc=Information%20Security%20Engineer%20%C2%B7%20Porto%2C%20PT&descSize=16&descAlignY=68&animation=false" alt="Banner: Daniel Malaco, Information Security Engineer, Porto, Portugal" />
-</picture>
+<img src="./assets/banner.svg" alt="Banner: Daniel Malaco, Information Security Engineer, Porto, Portugal" />
 
 Information Security Engineer designing and operating the security
 architecture for critical road infrastructure in Portugal. Came up through
@@ -89,8 +86,8 @@ networks before moving into security.
 
 </div>
 
-Stats, top languages, trophies and the starred-repos count are generated
-weekly by
+Banner, stats, top languages, trophies and the starred-repos count are
+generated weekly by
 [`.github/workflows/update-profile-widgets.yml`](.github/workflows/update-profile-widgets.yml)
 and committed to `assets/` — no live third-party endpoint is queried when
 someone loads this profile. The streak card still calls

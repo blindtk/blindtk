@@ -3,13 +3,14 @@ name: Update profile widgets
 # Coloca este ficheiro em .github/workflows/update-profile-widgets.yml
 # dentro de blindtk/blindtk.
 #
-# Gera localmente, e comita para assets/, os widgets que dependem de
-# instâncias gratuitas do Vercel que têm andado em baixo
-# (github-readme-stats.vercel.app -> 503 DEPLOYMENT_PAUSED;
-# github-profile-trophy.vercel.app -> 402 DEPLOYMENT_DISABLED, confirmado
-# em 2026-07-30), mais um badge de repos com estrela. O header
-# (capsule-render) e o streak (demolab.com) continuam a funcionar e ficam
-# como estavam.
+# Gera localmente, e comita para assets/, todos os widgets dinâmicos do
+# README: banner, stats/top-langs, troféus e contagem de repos com
+# estrela. O banner deixou de depender do capsule-render.vercel.app: essa
+# versão usa um <style> CSS com animação de fade-in que, confirmado em
+# 2026-07-30, fica presa a opacity:0 quando carregada via <img> na página
+# real do perfil (mesmo com animation=false no URL) — substituído por um
+# SVG estático gerado por nós, sem <style> nem animação. O streak
+# (demolab.com) continua a funcionar e fica como estava.
 
 on:
   schedule:
@@ -25,6 +26,23 @@ jobs:
     steps:
       - name: Checkout blindtk/blindtk
         uses: actions/checkout@v4
+
+      - name: Gerar banner
+        run: |
+          mkdir -p assets
+          cat > assets/banner.svg <<'SVGEOF'
+          <svg width="854" height="170" viewBox="0 0 854 170" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#0a0d11"/>
+                <stop offset="100%" stop-color="#123d2b"/>
+              </linearGradient>
+            </defs>
+            <rect width="854" height="170" fill="url(#bg)"/>
+            <text x="427" y="88" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="42" font-weight="700" fill="#e6edf3">Daniel Malaco</text>
+            <text x="427" y="118" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="500" fill="#e6edf3">Information Security Engineer &#183; Porto, PT</text>
+          </svg>
+          SVGEOF
 
       - name: Gerar cartão de stats
         uses: stats-organization/github-readme-stats-action@v2
@@ -64,6 +82,50 @@ jobs:
           # oficial (ver env-example no repo) — não é GITHUB_TOKEN nem
           # GH_TOKEN.
           GITHUB_TOKEN1: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Esconder categorias de troféus não alcançadas
+        run: |
+          python3 - assets/trophies.svg <<'PYEOF'
+          import re, sys
+
+          path = sys.argv[1]
+          with open(path, "r", encoding="utf-8") as f:
+              content = f.read()
+
+          tokens = list(re.finditer(r'<svg\b[^>]*>|</svg>', content))
+          depth = 0
+          stack = []
+          top_children = []
+          for m in tokens:
+              tok = m.group(0)
+              if tok.startswith("</"):
+                  d, s = stack.pop()
+                  if d == 2:
+                      top_children.append((s, m.end()))
+                  depth -= 1
+              else:
+                  depth += 1
+                  stack.append((depth, m.start()))
+
+          keep = [(s, e, content[s:e]) for s, e in top_children if ">Unknown<" not in content[s:e]]
+
+          SPACING = 125
+          new_blocks = []
+          for i, (s, e, block) in enumerate(keep):
+              new_x = i * SPACING
+              new_blocks.append(re.sub(r'(<svg\s+x=")\d+(")', rf'\g<1>{new_x}\g<2>', block, count=1))
+
+          new_width = len(keep) * SPACING - 10
+          prefix = content[:top_children[0][0]]
+          suffix = content[top_children[-1][1]:]
+          prefix = re.sub(r'(width=")\d+(")', rf'\g<1>{new_width}\g<2>', prefix, count=1)
+          prefix = re.sub(r'(viewBox="0 0 )\d+( 115")', rf'\g<1>{new_width}\g<2>', prefix, count=1)
+
+          with open(path, "w", encoding="utf-8") as f:
+              f.write(prefix + "".join(new_blocks) + suffix)
+
+          print(f"Kept {len(keep)}/{len(top_children)} trophies, new width={new_width}")
+          PYEOF
 
       - name: Obter contagem de repositórios com estrela
         id: starred
