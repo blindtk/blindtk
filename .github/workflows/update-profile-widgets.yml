@@ -19,8 +19,19 @@ name: Update profile widgets
 # `permissions: contents: read` — mesmo que esse código seja comprometido
 # ou a tag movida, o token que ele vê não sabe escrever no repo. Só o job
 # `commit`, que não corre nenhum código de terceiros, tem `contents:
-# write`, e o único artefacto que atravessa a fronteira é o conjunto de
-# SVGs já gerados (via actions/upload-artifact + download-artifact).
+# write` (+ `pull-requests: write`, ver abaixo), e o único artefacto que
+# atravessa a fronteira é o conjunto de SVGs já gerados (via
+# actions/upload-artifact + download-artifact).
+#
+# O job `commit` abre PR em vez de dar push direto a main (revisão de
+# segurança de CI/CD, follow-up 2026-07-30): o ruleset do main passou a
+# exigir "Require a pull request before merging" com 1 aprovação — um
+# `git push` direto passaria a falhar de qualquer forma. Em vez de dar
+# bypass ao bot (que deixaria o main protegido só para humanos), o bot
+# propõe o branch `automated/profile-widgets` e uma pessoa aprova/mergeia
+# sempre. Requer a definição do repositório "Allow GitHub Actions to
+# create pull requests" ligada (Settings → Actions → General → Workflow
+# permissions) — sem isso o `gh pr create` falha.
 
 on:
   schedule:
@@ -209,23 +220,70 @@ jobs:
     needs: generate
     runs-on: ubuntu-latest
     permissions:
+      # pull-requests: write só para abrir a PR (gh pr create) — o ruleset
+      # do main passou a exigir "Require a pull request before merging"
+      # com aprovação humana (2026-07-30), por isso este job já não pode
+      # fazer `git push` direto para main. Em vez disso propõe um branch e
+      # abre PR; quem aprova/mergeia é sempre uma pessoa.
       contents: write
+      pull-requests: write
     steps:
       - name: Checkout blindtk/blindtk
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
-        # persist-credentials fica no valor por omissão (true): este job é
-        # o único que faz `git push`, e precisa das credenciais do checkout
-        # para isso.
+        # persist-credentials fica no valor por omissão (true): este job
+        # precisa das credenciais do checkout para dar push ao branch
+        # automático e para o `gh pr create` abaixo.
 
       - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
         with:
           name: profile-widgets
           path: assets
 
-      - name: Comitar assets gerados
+      - name: Preparar branch e commit
+        id: prepare
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Nome de branch fixo (não datado): se a PR da semana anterior
+          # nunca foi aprovada, esta execução substitui o conteúdo proposto
+          # pelo mais recente em vez de acumular uma PR nova por semana.
+          BRANCH="automated/profile-widgets"
+          git checkout -b "$BRANCH"
           git add assets/*.svg
-          git diff --staged --quiet && echo "Sem alterações." || git commit -m "chore: update profile widgets"
-          git push
+
+          if git diff --staged --quiet; then
+            echo "Sem alterações nos assets — nada a propor."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git commit -m "chore: update profile widgets"
+          git push --force origin "HEAD:refs/heads/${BRANCH}"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "branch=${BRANCH}" >> "$GITHUB_OUTPUT"
+
+      - name: Abrir PR (se ainda não existir uma aberta)
+        if: steps.prepare.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.prepare.outputs.branch }}
+        run: |
+          existing=$(gh pr list --state open --head "$BRANCH" --json number --jq '.[0].number // empty')
+          if [ -z "$existing" ]; then
+            gh pr create --title "chore: update profile widgets" --base main --head "$BRANCH" --body "$(cat <<'BODYEOF'
+          Gerado automaticamente por `update-profile-widgets.yml` (job `generate`,
+          `permissions: contents: read`, sem escrita no repo).
+
+          Antes de aprovar: abre o separador **Files changed** e confirma visualmente
+          que os 5 SVGs (`banner`, `github-stats`, `top-langs`, `trophies`,
+          `stars-given`) renderizam como esperado — os checks automáticos confirmam
+          que o workflow correu sem erros, não que o conteúdo gerado está correto.
+
+          ---
+          _Aberto automaticamente — sem revisão de conteúdo antes deste ponto._
+          BODYEOF
+            )"
+          else
+            echo "PR #${existing} já aberta para ${BRANCH} — atualizada pelo push acima, nada a criar."
+          fi

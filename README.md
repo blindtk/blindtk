@@ -93,6 +93,14 @@ someone loads this profile. The streak card still calls
 `streak-stats.demolab.com` directly, which is up and stayed out of scope
 for self-hosting.
 
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/blindtk/blindtk/badge)](https://securityscorecards.dev/viewer/?uri=github.com/blindtk/blindtk)
+
+This repo's own CI/CD is scored by
+[OpenSSF Scorecard](.github/workflows/scorecard.yml) — pinned actions,
+minimal per-job permissions, branch protection with required review — the
+same controls this profile talks about, applied to the workflow that
+maintains it.
+
 Public activity here is a fraction of the work — most of it is internal
 infrastructure, not public code.
 
