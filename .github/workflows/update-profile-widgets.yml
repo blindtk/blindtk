@@ -1,0 +1,73 @@
+name: Update profile widgets
+
+# Coloca este ficheiro em .github/workflows/update-profile-widgets.yml
+# dentro de blindtk/blindtk.
+#
+# Gera localmente, e comita para assets/, os dois widgets que dependem de
+# instâncias gratuitas do Vercel que têm andado em baixo
+# (github-readme-stats.vercel.app -> 503 DEPLOYMENT_PAUSED;
+# github-profile-trophy.vercel.app -> 402 DEPLOYMENT_DISABLED, confirmado
+# em 2026-07-30). O header (capsule-render) e o streak (demolab.com)
+# continuam a funcionar e ficam como estavam.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # semanal, segunda-feira 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-widgets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout blindtk/blindtk
+        uses: actions/checkout@v4
+
+      - name: Gerar cartão de stats
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: username=blindtk&show_icons=true&hide_border=true&bg_color=0a0d11&title_color=3ddc84&icon_color=3ddc84&text_color=8593a5&ring_color=3ddc84
+          path: assets/github-stats.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Gerar cartão de top languages
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: top-langs
+          options: username=blindtk&layout=compact&hide_border=true&bg_color=0a0d11&title_color=3ddc84&text_color=8593a5&langs_count=8
+          path: assets/top-langs.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout ryo-ma/github-profile-trophy (tag fixa v1.0)
+        uses: actions/checkout@v4
+        with:
+          repository: ryo-ma/github-profile-trophy
+          ref: v1.0
+          path: .trophy-src
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Gerar cartão de troféus
+        working-directory: .trophy-src
+        run: |
+          deno run --allow-net --allow-env --allow-read --allow-write \
+            ./render_svg.ts blindtk ../assets/trophies.svg matrix
+        env:
+          # Nome exato exigido pelo GithubApiService do render_svg.ts
+          # oficial (ver env-example no repo) — não é GITHUB_TOKEN nem
+          # GH_TOKEN.
+          GITHUB_TOKEN1: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comitar assets gerados
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/*.svg
+          git diff --staged --quiet && echo "Sem alterações." || git commit -m "chore: update profile widgets"
+          git push
