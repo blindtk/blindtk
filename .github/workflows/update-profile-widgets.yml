@@ -66,6 +66,7 @@ jobs:
           repository: ryo-ma/github-profile-trophy
           ref: v1.0
           path: .trophy-src
+          persist-credentials: false
 
       - name: Setup Deno
         uses: denoland/setup-deno@v2
@@ -137,9 +138,11 @@ jobs:
           echo "count=$COUNT" >> "$GITHUB_OUTPUT"
 
       - name: Gerar badge de repositórios com estrela
+        env:
+          STAR_COUNT: ${{ steps.starred.outputs.count }}
         run: |
           curl -sS -o assets/stars-given.svg \
-            "https://img.shields.io/badge/Repos%20starred-${{ steps.starred.outputs.count }}-3ddc84?style=flat-square&labelColor=0a0d11"
+            "https://img.shields.io/badge/Repos%20starred-${STAR_COUNT}-3ddc84?style=flat-square&labelColor=0a0d11"
 
       - name: Comitar assets gerados
         run: |
