@@ -101,6 +101,12 @@ minimal per-job permissions, branch protection with required review — the
 same controls this profile talks about, applied to the workflow that
 maintains it.
 
+A few checks stay low on purpose, not by oversight: `Contributors` and
+`Fuzzing` don't fit a single-maintainer profile repo with no application
+code to fuzz, and `CII-Best-Practices` targets a governance questionnaire
+built for software projects, not a GitHub profile. Faking any of those to
+move the number would be the opposite of what this page is meant to show.
+
 Public activity here is a fraction of the work — most of it is internal
 infrastructure, not public code.
 
