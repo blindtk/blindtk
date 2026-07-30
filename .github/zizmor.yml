@@ -13,4 +13,4 @@ rules:
       # CI/CD, 2026-07-30). Sem esta exceção, o job `zizmor` fica vermelho
       # para sempre por um achado aceite conscientemente, o que treina a
       # ignorar o check em vez de o ler.
-      - update-profile-widgets.yml:214:9
+      - update-profile-widgets.yml:231:9
