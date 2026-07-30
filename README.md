@@ -22,31 +22,57 @@ moving into security.
 **Security**
 
 ![NGFW](https://img.shields.io/badge/NGFW-EE1F25?style=flat-square&logo=fortinet&logoColor=white&labelColor=0a0d11)
+![Palo Alto Networks](https://img.shields.io/badge/Palo%20Alto%20Networks-4aa8ff?style=flat-square&logo=paloaltonetworks&logoColor=white&labelColor=0a0d11)
+![MikroTik](https://img.shields.io/badge/MikroTik-3ddc84?style=flat-square&logo=mikrotik&logoColor=white&labelColor=0a0d11)
+![Huawei](https://img.shields.io/badge/Huawei-f5b544?style=flat-square&logo=huawei&logoColor=white&labelColor=0a0d11)
+![pfSense](https://img.shields.io/badge/pfSense-4aa8ff?style=flat-square&logo=pfsense&logoColor=white&labelColor=0a0d11)
+![Cloudflare](https://img.shields.io/badge/Cloudflare-3ddc84?style=flat-square&logo=cloudflare&logoColor=white&labelColor=0a0d11)
 ![WAF](https://img.shields.io/badge/WAF-4aa8ff?style=flat-square&labelColor=0a0d11)
 ![Security Email Gateway](https://img.shields.io/badge/Security%20Email%20Gateway-3ddc84?style=flat-square&labelColor=0a0d11)
 ![AV](https://img.shields.io/badge/AV-f5b544?style=flat-square&labelColor=0a0d11)
 ![EDR](https://img.shields.io/badge/EDR-4aa8ff?style=flat-square&labelColor=0a0d11)
 ![IAM](https://img.shields.io/badge/IAM-3ddc84?style=flat-square&labelColor=0a0d11)
-![Active Directory](https://img.shields.io/badge/Active%20Directory-f5b544?style=flat-square&labelColor=0a0d11)
-![SIEM](https://img.shields.io/badge/SIEM-4aa8ff?style=flat-square&labelColor=0a0d11)
+![KeePassXC](https://img.shields.io/badge/KeePassXC-f5b544?style=flat-square&logo=keepassxc&logoColor=white&labelColor=0a0d11)
+![Active Directory](https://img.shields.io/badge/Active%20Directory-4aa8ff?style=flat-square&labelColor=0a0d11)
+![SIEM](https://img.shields.io/badge/SIEM-3ddc84?style=flat-square&labelColor=0a0d11)
+![Splunk](https://img.shields.io/badge/Splunk-f5b544?style=flat-square&logo=splunk&logoColor=white&labelColor=0a0d11)
+![Elastic](https://img.shields.io/badge/Elastic-4aa8ff?style=flat-square&logo=elastic&logoColor=white&labelColor=0a0d11)
 ![Vulnerability Assessment](https://img.shields.io/badge/Vulnerability%20Assessment-3ddc84?style=flat-square&labelColor=0a0d11)
 ![Penetration Testing](https://img.shields.io/badge/Penetration%20Testing-f5b544?style=flat-square&labelColor=0a0d11)
-![Business Continuity Planning](https://img.shields.io/badge/Business%20Continuity%20Planning-4aa8ff?style=flat-square&labelColor=0a0d11)
+![Kali Linux](https://img.shields.io/badge/Kali%20Linux-4aa8ff?style=flat-square&logo=kalilinux&logoColor=white&labelColor=0a0d11)
+![Metasploit](https://img.shields.io/badge/Metasploit-3ddc84?style=flat-square&logo=metasploit&logoColor=white&labelColor=0a0d11)
+![Burp Suite](https://img.shields.io/badge/Burp%20Suite-f5b544?style=flat-square&logo=burpsuite&logoColor=white&labelColor=0a0d11)
+![Wireshark](https://img.shields.io/badge/Wireshark-4aa8ff?style=flat-square&logo=wireshark&logoColor=white&labelColor=0a0d11)
+![Business Continuity Planning](https://img.shields.io/badge/Business%20Continuity%20Planning-3ddc84?style=flat-square&labelColor=0a0d11)
 
 **Platforms**
 
 ![Linux](https://img.shields.io/badge/Linux-f5b544?style=flat-square&logo=linux&logoColor=white&labelColor=0a0d11)
-![Windows](https://img.shields.io/badge/Windows-4aa8ff?style=flat-square&logo=windows&logoColor=white&labelColor=0a0d11)
-![AWS](https://img.shields.io/badge/AWS-3ddc84?style=flat-square&logo=amazonaws&logoColor=white&labelColor=0a0d11)
-![Azure](https://img.shields.io/badge/Azure-4aa8ff?style=flat-square&logo=microsoftazure&logoColor=white&labelColor=0a0d11)
+![Windows](https://img.shields.io/badge/Windows-4aa8ff?style=flat-square&labelColor=0a0d11)
+![AWS](https://img.shields.io/badge/AWS-3ddc84?style=flat-square&labelColor=0a0d11)
+![Azure](https://img.shields.io/badge/Azure-4aa8ff?style=flat-square&labelColor=0a0d11)
+![Microsoft](https://img.shields.io/badge/Microsoft-3ddc84?style=flat-square&labelColor=0a0d11)
 ![Rapid7 InsightVM](https://img.shields.io/badge/Rapid7%20InsightVM-f5b544?style=flat-square&labelColor=0a0d11)
-![ServiceNow](https://img.shields.io/badge/ServiceNow-3ddc84?style=flat-square&logo=servicenow&logoColor=white&labelColor=0a0d11)
+![ServiceNow](https://img.shields.io/badge/ServiceNow-4aa8ff?style=flat-square&labelColor=0a0d11)
+![VMware](https://img.shields.io/badge/VMware-3ddc84?style=flat-square&logo=vmware&logoColor=white&labelColor=0a0d11)
+![NetApp](https://img.shields.io/badge/NetApp-f5b544?style=flat-square&logo=netapp&logoColor=white&labelColor=0a0d11)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-4aa8ff?style=flat-square&logo=ubuntu&logoColor=white&labelColor=0a0d11)
+![Debian](https://img.shields.io/badge/Debian-3ddc84?style=flat-square&logo=debian&logoColor=white&labelColor=0a0d11)
+![Red Hat](https://img.shields.io/badge/Red%20Hat-f5b544?style=flat-square&logo=redhat&logoColor=white&labelColor=0a0d11)
+
+**Containers & DevOps**
+
+![Docker](https://img.shields.io/badge/Docker-4aa8ff?style=flat-square&logo=docker&logoColor=white&labelColor=0a0d11)
+![Podman](https://img.shields.io/badge/Podman-3ddc84?style=flat-square&logo=podman&logoColor=white&labelColor=0a0d11)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-f5b544?style=flat-square&logo=kubernetes&logoColor=white&labelColor=0a0d11)
+![GitHub](https://img.shields.io/badge/GitHub-4aa8ff?style=flat-square&logo=github&logoColor=white&labelColor=0a0d11)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-3ddc84?style=flat-square&logo=githubactions&logoColor=white&labelColor=0a0d11)
 
 **Languages**
 
 ![Python](https://img.shields.io/badge/Python-3ddc84?style=flat-square&logo=python&logoColor=white&labelColor=0a0d11)
 ![Bash](https://img.shields.io/badge/Bash-f5b544?style=flat-square&logo=gnubash&logoColor=white&labelColor=0a0d11)
-![PowerShell](https://img.shields.io/badge/PowerShell-4aa8ff?style=flat-square&logo=powershell&logoColor=white&labelColor=0a0d11)
+![PowerShell](https://img.shields.io/badge/PowerShell-4aa8ff?style=flat-square&labelColor=0a0d11)
 ![Go](https://img.shields.io/badge/Go-3ddc84?style=flat-square&logo=go&logoColor=white&labelColor=0a0d11)
 ![C/C++](https://img.shields.io/badge/C%2FC%2B%2B-f5b544?style=flat-square&logo=cplusplus&logoColor=white&labelColor=0a0d11)
 
@@ -119,9 +145,9 @@ infrastructure, not public code.
 ## Contact
 
 [![Website](https://img.shields.io/badge/Website-danielmala.co-3ddc84?style=flat-square&labelColor=0a0d11)](https://danielmala.co)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-danielmalaco-4aa8ff?style=flat-square&logo=linkedin&logoColor=white&labelColor=0a0d11)](https://www.linkedin.com/in/danielmalaco)
-[![Email](https://img.shields.io/badge/Email-me%40danielmala.co-f5b544?style=flat-square&logo=maildotru&logoColor=white&labelColor=0a0d11)](mailto:me@danielmala.co)
-[![Credly](https://img.shields.io/badge/Credly-badges-3ddc84?style=flat-square&labelColor=0a0d11)](https://www.credly.com/users/daniel-malaco/badges)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-danielmalaco-4aa8ff?style=flat-square&labelColor=0a0d11)](https://www.linkedin.com/in/danielmalaco)
+[![Email](https://img.shields.io/badge/Email-me%40danielmala.co-f5b544?style=flat-square&logo=mailru&logoColor=white&labelColor=0a0d11)](mailto:me@danielmala.co)
+[![Credly](https://img.shields.io/badge/Credly-badges-3ddc84?style=flat-square&logo=credly&logoColor=white&labelColor=0a0d11)](https://www.credly.com/users/daniel-malaco/badges)
 
 <div align="right">
 
