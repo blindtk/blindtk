@@ -3,12 +3,13 @@ name: Update profile widgets
 # Coloca este ficheiro em .github/workflows/update-profile-widgets.yml
 # dentro de blindtk/blindtk.
 #
-# Gera localmente, e comita para assets/, os dois widgets que dependem de
+# Gera localmente, e comita para assets/, os widgets que dependem de
 # instâncias gratuitas do Vercel que têm andado em baixo
 # (github-readme-stats.vercel.app -> 503 DEPLOYMENT_PAUSED;
 # github-profile-trophy.vercel.app -> 402 DEPLOYMENT_DISABLED, confirmado
-# em 2026-07-30). O header (capsule-render) e o streak (demolab.com)
-# continuam a funcionar e ficam como estavam.
+# em 2026-07-30), mais um badge de repos com estrela. O header
+# (capsule-render) e o streak (demolab.com) continuam a funcionar e ficam
+# como estavam.
 
 on:
   schedule:
@@ -29,7 +30,7 @@ jobs:
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: stats
-          options: username=blindtk&show_icons=true&hide_border=true&bg_color=0a0d11&title_color=3ddc84&icon_color=3ddc84&text_color=8593a5&ring_color=3ddc84
+          options: username=blindtk&show_icons=true&hide_border=true&bg_color=0a0d11&title_color=3ddc84&icon_color=3ddc84&text_color=8593a5&ring_color=3ddc84&hide=stars,prs,issues,contribs
           path: assets/github-stats.svg
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -63,6 +64,20 @@ jobs:
           # oficial (ver env-example no repo) — não é GITHUB_TOKEN nem
           # GH_TOKEN.
           GITHUB_TOKEN1: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Obter contagem de repositórios com estrela
+        id: starred
+        run: |
+          COUNT=$(curl -sS -H "Authorization: bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"query":"query { user(login: \"blindtk\") { starredRepositories { totalCount } } }"}' \
+            https://api.github.com/graphql | jq -r '.data.user.starredRepositories.totalCount')
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+
+      - name: Gerar badge de repositórios com estrela
+        run: |
+          curl -sS -o assets/stars-given.svg \
+            "https://img.shields.io/badge/Repos%20starred-${{ steps.starred.outputs.count }}-3ddc84?style=flat-square&labelColor=0a0d11"
 
       - name: Comitar assets gerados
         run: |
