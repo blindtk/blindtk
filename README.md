@@ -21,44 +21,63 @@ moving into security.
 
 **Security**
 
-![NGFW](https://img.shields.io/badge/NGFW-EE1F25?style=flat-square&logo=fortinet&logoColor=white&labelColor=0a0d11)
+_Network & email_
+
+![Fortinet](https://img.shields.io/badge/Fortinet-EE1F25?style=flat-square&logo=fortinet&logoColor=white&labelColor=0a0d11)
 ![Palo Alto Networks](https://img.shields.io/badge/Palo%20Alto%20Networks-4aa8ff?style=flat-square&logo=paloaltonetworks&logoColor=white&labelColor=0a0d11)
 ![MikroTik](https://img.shields.io/badge/MikroTik-3ddc84?style=flat-square&logo=mikrotik&logoColor=white&labelColor=0a0d11)
 ![Huawei](https://img.shields.io/badge/Huawei-f5b544?style=flat-square&logo=huawei&logoColor=white&labelColor=0a0d11)
 ![pfSense](https://img.shields.io/badge/pfSense-4aa8ff?style=flat-square&logo=pfsense&logoColor=white&labelColor=0a0d11)
 ![Cloudflare](https://img.shields.io/badge/Cloudflare-3ddc84?style=flat-square&logo=cloudflare&logoColor=white&labelColor=0a0d11)
-![WAF](https://img.shields.io/badge/WAF-4aa8ff?style=flat-square&labelColor=0a0d11)
-![Security Email Gateway](https://img.shields.io/badge/Security%20Email%20Gateway-3ddc84?style=flat-square&labelColor=0a0d11)
-![AV](https://img.shields.io/badge/AV-f5b544?style=flat-square&labelColor=0a0d11)
-![EDR](https://img.shields.io/badge/EDR-4aa8ff?style=flat-square&labelColor=0a0d11)
-![IAM](https://img.shields.io/badge/IAM-3ddc84?style=flat-square&labelColor=0a0d11)
-![KeePassXC](https://img.shields.io/badge/KeePassXC-f5b544?style=flat-square&logo=keepassxc&logoColor=white&labelColor=0a0d11)
-![Active Directory](https://img.shields.io/badge/Active%20Directory-4aa8ff?style=flat-square&labelColor=0a0d11)
-![SIEM](https://img.shields.io/badge/SIEM-3ddc84?style=flat-square&labelColor=0a0d11)
+![Security Email Gateway](https://img.shields.io/badge/Security%20Email%20Gateway-f5b544?style=flat-square&labelColor=0a0d11)
+
+_Endpoint & detection_
+
+![AV](https://img.shields.io/badge/AV-4aa8ff?style=flat-square&labelColor=0a0d11)
+![EDR](https://img.shields.io/badge/EDR-3ddc84?style=flat-square&labelColor=0a0d11)
 ![Splunk](https://img.shields.io/badge/Splunk-f5b544?style=flat-square&logo=splunk&logoColor=white&labelColor=0a0d11)
 ![Elastic](https://img.shields.io/badge/Elastic-4aa8ff?style=flat-square&logo=elastic&logoColor=white&labelColor=0a0d11)
-![Vulnerability Assessment](https://img.shields.io/badge/Vulnerability%20Assessment-3ddc84?style=flat-square&labelColor=0a0d11)
-![Penetration Testing](https://img.shields.io/badge/Penetration%20Testing-f5b544?style=flat-square&labelColor=0a0d11)
-![Kali Linux](https://img.shields.io/badge/Kali%20Linux-4aa8ff?style=flat-square&logo=kalilinux&logoColor=white&labelColor=0a0d11)
-![Metasploit](https://img.shields.io/badge/Metasploit-3ddc84?style=flat-square&logo=metasploit&logoColor=white&labelColor=0a0d11)
-![Burp Suite](https://img.shields.io/badge/Burp%20Suite-f5b544?style=flat-square&logo=burpsuite&logoColor=white&labelColor=0a0d11)
-![Wireshark](https://img.shields.io/badge/Wireshark-4aa8ff?style=flat-square&logo=wireshark&logoColor=white&labelColor=0a0d11)
-![Business Continuity Planning](https://img.shields.io/badge/Business%20Continuity%20Planning-3ddc84?style=flat-square&labelColor=0a0d11)
+
+_Identity & access_
+
+![IAM](https://img.shields.io/badge/IAM-3ddc84?style=flat-square&labelColor=0a0d11)
+![Active Directory](https://img.shields.io/badge/Active%20Directory-f5b544?style=flat-square&labelColor=0a0d11)
+![KeePassXC](https://img.shields.io/badge/KeePassXC-4aa8ff?style=flat-square&logo=keepassxc&logoColor=white&labelColor=0a0d11)
+
+_Offensive security_
+
+![Kali Linux](https://img.shields.io/badge/Kali%20Linux-3ddc84?style=flat-square&logo=kalilinux&logoColor=white&labelColor=0a0d11)
+![Metasploit](https://img.shields.io/badge/Metasploit-f5b544?style=flat-square&logo=metasploit&logoColor=white&labelColor=0a0d11)
+![Burp Suite](https://img.shields.io/badge/Burp%20Suite-4aa8ff?style=flat-square&logo=burpsuite&logoColor=white&labelColor=0a0d11)
+![Wireshark](https://img.shields.io/badge/Wireshark-3ddc84?style=flat-square&logo=wireshark&logoColor=white&labelColor=0a0d11)
+
+_Resilience_
+
+![Business Continuity Planning](https://img.shields.io/badge/Business%20Continuity%20Planning-f5b544?style=flat-square&labelColor=0a0d11)
 
 **Platforms**
 
-![Linux](https://img.shields.io/badge/Linux-f5b544?style=flat-square&logo=linux&logoColor=white&labelColor=0a0d11)
-![Windows](https://img.shields.io/badge/Windows-4aa8ff?style=flat-square&labelColor=0a0d11)
-![AWS](https://img.shields.io/badge/AWS-3ddc84?style=flat-square&labelColor=0a0d11)
-![Azure](https://img.shields.io/badge/Azure-4aa8ff?style=flat-square&labelColor=0a0d11)
-![Microsoft](https://img.shields.io/badge/Microsoft-3ddc84?style=flat-square&labelColor=0a0d11)
-![Rapid7 InsightVM](https://img.shields.io/badge/Rapid7%20InsightVM-f5b544?style=flat-square&labelColor=0a0d11)
-![ServiceNow](https://img.shields.io/badge/ServiceNow-4aa8ff?style=flat-square&labelColor=0a0d11)
-![VMware](https://img.shields.io/badge/VMware-3ddc84?style=flat-square&logo=vmware&logoColor=white&labelColor=0a0d11)
-![NetApp](https://img.shields.io/badge/NetApp-f5b544?style=flat-square&logo=netapp&logoColor=white&labelColor=0a0d11)
+_Virtualization & storage_
+
+![VMware](https://img.shields.io/badge/VMware-4aa8ff?style=flat-square&logo=vmware&logoColor=white&labelColor=0a0d11)
+![NetApp](https://img.shields.io/badge/NetApp-3ddc84?style=flat-square&logo=netapp&logoColor=white&labelColor=0a0d11)
+
+_Operating systems_
+
+![Windows](https://img.shields.io/badge/Windows-f5b544?style=flat-square&labelColor=0a0d11)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-4aa8ff?style=flat-square&logo=ubuntu&logoColor=white&labelColor=0a0d11)
 ![Debian](https://img.shields.io/badge/Debian-3ddc84?style=flat-square&logo=debian&logoColor=white&labelColor=0a0d11)
 ![Red Hat](https://img.shields.io/badge/Red%20Hat-f5b544?style=flat-square&logo=redhat&logoColor=white&labelColor=0a0d11)
+
+_Cloud_
+
+![AWS](https://img.shields.io/badge/AWS-4aa8ff?style=flat-square&labelColor=0a0d11)
+![Azure](https://img.shields.io/badge/Azure-3ddc84?style=flat-square&labelColor=0a0d11)
+
+_Enterprise IT_
+
+![Rapid7 InsightVM](https://img.shields.io/badge/Rapid7%20InsightVM-f5b544?style=flat-square&labelColor=0a0d11)
+![ServiceNow](https://img.shields.io/badge/ServiceNow-4aa8ff?style=flat-square&labelColor=0a0d11)
 
 **Containers & DevOps**
 
