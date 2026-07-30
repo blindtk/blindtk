@@ -22,4 +22,12 @@
   // este repo tem: github-actions).
   minimumReleaseAge: '3 days',
   labels: ['dependencies', 'github-actions'],
+  // zizmor passou a instalar-se por requirements.txt com --hash (achado do
+  // Scorecard, Pinned-Dependencies) — o manager nativo pip_requirements do
+  // Renovate sobe a versão E recalcula os hashes na mesma PR. Explícito em
+  // vez de confiar no fileMatch por omissão, para não depender de o nome
+  // do ficheiro bater certo com o padrão genérico.
+  pip_requirements: {
+    managerFilePatterns: ['/^\\.github/zizmor-requirements\\.txt$/'],
+  },
 }

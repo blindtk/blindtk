@@ -15,9 +15,13 @@ on:
   push:
     paths:
       - ".github/workflows/**"
+      - ".github/zizmor-requirements.txt"
+      - ".github/zizmor.yml"
   pull_request:
     paths:
       - ".github/workflows/**"
+      - ".github/zizmor-requirements.txt"
+      - ".github/zizmor.yml"
   schedule:
     - cron: "30 6 * * 1" # semanal, a seguir ao update-profile-widgets.yml
   workflow_dispatch:
@@ -38,8 +42,13 @@ jobs:
         # Versão cravada, como no personal-site (security.yml): a 1.27.0
         # foi retirada do PyPI por advisory de segurança
         # (GHSA-f42p-wjw5-97qh) — sem pin, cada execução corre uma versão
-        # diferente e sem aviso.
-        run: pip install zizmor==1.28.0
+        # diferente e sem aviso. --require-hashes (revisão de segurança de
+        # CI/CD, follow-up 2026-07-30 — achado do OpenSSF Scorecard,
+        # Pinned-Dependencies) vai além do pin de versão: verifica o
+        # download contra os hashes em zizmor-requirements.txt antes de
+        # instalar, para que servir um artefacto diferente sob o mesmo
+        # número de versão falhe, em vez de instalar sem aviso.
+        run: pip install --require-hashes -r .github/zizmor-requirements.txt
       - name: Analisar workflows
         env:
           # permite as auditorias online (ex.: deteção de commits impostores)
