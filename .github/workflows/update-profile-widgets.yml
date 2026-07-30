@@ -11,21 +11,35 @@ name: Update profile widgets
 # real do perfil (mesmo com animation=false no URL) — substituído por um
 # SVG estático gerado por nós, sem <style> nem animação. O streak
 # (demolab.com) continua a funcionar e fica como estava.
+#
+# Dois jobs, não um (revisão de segurança de CI/CD, 2026-07-30): o job
+# `generate` corre código de terceiros (a stats-action, e sobretudo o
+# gerador de troféus, checkout de ryo-ma/github-profile-trophy a correr
+# via Deno com GITHUB_TOKEN1 no ambiente) e por isso só recebe
+# `permissions: contents: read` — mesmo que esse código seja comprometido
+# ou a tag movida, o token que ele vê não sabe escrever no repo. Só o job
+# `commit`, que não corre nenhum código de terceiros, tem `contents:
+# write`, e o único artefacto que atravessa a fronteira é o conjunto de
+# SVGs já gerados (via actions/upload-artifact + download-artifact).
 
 on:
   schedule:
     - cron: "0 6 * * 1" # semanal, segunda-feira 06:00 UTC
   workflow_dispatch:
 
-permissions:
-  contents: write
+permissions: {}
 
 jobs:
-  update-widgets:
+  generate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout blindtk/blindtk
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          # este job nunca comita nem faz push — sem persistir credenciais
+          persist-credentials: false
 
       - name: Gerar banner
         run: |
@@ -45,7 +59,7 @@ jobs:
           SVGEOF
 
       - name: Gerar cartão de stats
-        uses: stats-organization/github-readme-stats-action@v2
+        uses: stats-organization/github-readme-stats-action@e856fc8de9d7729b463c468911e232cfbdc3d55e # v2.0.2
         with:
           card: stats
           options: username=blindtk&show_icons=true&hide_border=true&bg_color=0a0d11&title_color=3ddc84&icon_color=3ddc84&text_color=8593a5&ring_color=3ddc84&hide=stars,prs,issues,contribs
@@ -53,7 +67,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Gerar cartão de top languages
-        uses: stats-organization/github-readme-stats-action@v2
+        uses: stats-organization/github-readme-stats-action@e856fc8de9d7729b463c468911e232cfbdc3d55e # v2.0.2
         with:
           card: top-langs
           options: username=blindtk&layout=compact&hide_border=true&bg_color=0a0d11&title_color=3ddc84&text_color=8593a5&langs_count=8
@@ -61,27 +75,44 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checkout ryo-ma/github-profile-trophy (tag fixa v1.0)
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           repository: ryo-ma/github-profile-trophy
-          ref: v1.0
+          ref: 2ba2fe648c4e9b17d66e01bec285e083ca1824d3 # v1.0 — SHA em vez da tag: quem controlar a tag deixa de controlar o que corre
           path: .trophy-src
           persist-credentials: false
 
       - name: Setup Deno
-        uses: denoland/setup-deno@v2
+        uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed # v2.0.5
         with:
           deno-version: v2.x
 
       - name: Gerar cartão de troféus
         working-directory: .trophy-src
         run: |
-          deno run --allow-net --allow-env --allow-read --allow-write \
+          deno run \
+            --allow-net=api.github.com \
+            --allow-env=GITHUB_TOKEN1,GITHUB_TOKEN2 \
+            --allow-read=. \
+            --allow-write=../assets \
             ./render_svg.ts blindtk ../assets/trophies.svg matrix
         env:
           # Nome exato exigido pelo GithubApiService do render_svg.ts
           # oficial (ver env-example no repo) — não é GITHUB_TOKEN nem
-          # GH_TOKEN.
+          # GH_TOKEN. Este job só tem `contents: read`, portanto mesmo que
+          # este código de terceiros exfiltre o valor, o token não sabe
+          # escrever no repo. --allow-net/--allow-env/--allow-read/
+          # --allow-write acima estão reduzidos ao que o
+          # render_svg.ts/GithubApiService.ts precisam de facto (confirmado
+          # lendo o código-fonte na v1.0: só chama api.github.com/graphql,
+          # só lê GITHUB_TOKEN1/GITHUB_TOKEN2, escreve só dentro de
+          # ../assets), em vez do --allow-net/--allow-env/--allow-read/
+          # --allow-write sem âmbito nenhum que a versão anterior dava a
+          # código que não controlamos. GITHUB_TOKEN2 fica por definir (só
+          # GITHUB_TOKEN1 é passado) — está no --allow-env só porque o
+          # código lê as duas variáveis incondicionalmente (TOKENS array em
+          # GithubApiService.ts) e o Deno nega o próprio Deno.env.get() para
+          # qualquer nome fora da lista, mesmo que o valor não exista.
           GITHUB_TOKEN1: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Esconder categorias de troféus não alcançadas
@@ -130,19 +161,66 @@ jobs:
 
       - name: Obter contagem de repositórios com estrela
         id: starred
+        env:
+          # o token passa por env, nunca interpolado dentro do run: — evita
+          # injeção de template (mesmo padrão do headers.yml do personal-site,
+          # auditado pelo zizmor)
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          COUNT=$(curl -sS -H "Authorization: bearer ${{ secrets.GITHUB_TOKEN }}" \
+          COUNT=$(curl -sS -H "Authorization: bearer ${GH_TOKEN}" \
             -H "Content-Type: application/json" \
             -d '{"query":"query { user(login: \"blindtk\") { starredRepositories { totalCount } } }"}' \
             https://api.github.com/graphql | jq -r '.data.user.starredRepositories.totalCount')
           echo "count=$COUNT" >> "$GITHUB_OUTPUT"
 
-      - name: Gerar badge de repositórios com estrela
+      - name: Gerar e validar badge de repositórios com estrela
         env:
           STAR_COUNT: ${{ steps.starred.outputs.count }}
         run: |
           curl -sS -o assets/stars-given.svg \
             "https://img.shields.io/badge/Repos%20starred-${STAR_COUNT}-3ddc84?style=flat-square&labelColor=0a0d11"
+          # Conteúdo vindo de um terceiro (img.shields.io), escrito
+          # diretamente para um ficheiro que o job seguinte comita — nega
+          # o ficheiro se não parecer um SVG estático inócuo (sem <script>,
+          # sem handlers de evento, sem <foreignObject>, sem javascript:).
+          # Não é sanitização completa, é um filtro proporcional a uma
+          # fonte conhecida que nunca deveria conter nada disto.
+          if ! grep -q '^<svg' assets/stars-given.svg; then
+            echo "::error::stars-given.svg não começa por <svg> — a abortar sem comitar"
+            exit 1
+          fi
+          if grep -Eiq '<script|on[a-z]+ *=|<foreignObject|javascript:' assets/stars-given.svg; then
+            echo "::error::stars-given.svg contém conteúdo ativo inesperado — a abortar sem comitar"
+            exit 1
+          fi
+
+      - name: Preparar artefacto
+        run: |
+          mkdir -p widgets
+          cp assets/*.svg widgets/
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: profile-widgets
+          path: widgets/*.svg
+          retention-days: 1
+
+  commit:
+    needs: generate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout blindtk/blindtk
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        # persist-credentials fica no valor por omissão (true): este job é
+        # o único que faz `git push`, e precisa das credenciais do checkout
+        # para isso.
+
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
+        with:
+          name: profile-widgets
+          path: assets
 
       - name: Comitar assets gerados
         run: |

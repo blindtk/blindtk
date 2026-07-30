@@ -1,0 +1,55 @@
+name: OpenSSF Scorecard
+
+# Publica um badge de segurança de supply-chain (pins por SHA, permissões
+# mínimas, branch protection, …) na Security tab do repo — grátis em
+# repositório público, sem GHAS. Decidido na revisão de segurança de
+# CI/CD de 2026-07-30: faz sentido aqui precisamente porque este repo
+# ACABOU de ganhar os controlos que o Scorecard mede (actions pinadas por
+# SHA, `permissions` mínimas por job) — sem eles, o badge seria só ruído a
+# admitir uma nota baixa.
+#
+# Custo: ~1 job, ~2-3 min, semanal — não corre em cada push (o bot comita
+# para assets/ toda semana; disparar o Scorecard nesse commit duplicaria
+# trabalho sem novo sinal). Conta partilhada com o personal-site, que já
+# está perto da quota — daí schedule semanal + workflow_dispatch, nunca
+# `push`.
+
+on:
+  schedule:
+    - cron: "15 6 * * 1" # semanal, a seguir aos outros dois workflows
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+    permissions:
+      # exigidas pelo scorecard-action: ler o repo, publicar SARIF em
+      # Security → Code scanning, e assinar os resultados (OIDC)
+      contents: read
+      security-events: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+
+      - name: Correr Scorecard
+        uses: ossf/scorecard-action@2d1146689b8cda280b9bc96326124645441f03bc # v2.4.4
+        with:
+          results_file: results.sarif
+          results_format: sarif
+          publish_results: true
+
+      - name: Carregar resultados como artefacto
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: SARIF file
+          path: results.sarif
+          retention-days: 5
+
+      - name: Publicar em Security → Code scanning
+        uses: github/codeql-action/upload-sarif@dfbc6164313353db46c80e2fcfd38820bd2c3c46 # v3.37.4
+        with:
+          sarif_file: results.sarif

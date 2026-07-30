@@ -1,0 +1,25 @@
+// Substitui o dependabot.yml (github-actions) para partilhar mecanismo de
+// manutenção com o blindtk/personal-site: o Renovate mantém os digests SHA
+// das actions atualizados (helpers:pinGitHubActionDigests), em vez de duas
+// ferramentas a fazer o mesmo trabalho de forma diferente. Requer a app
+// "Renovate" (Mend) instalada neste repositório:
+//   https://github.com/apps/renovate
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:recommended',
+    // Pina as GitHub Actions por digest SHA (uses: owner/repo@<sha> # vX.Y.Z)
+    // e mantém os digests atualizados — proteção contra tags movidas. É a
+    // razão de existir deste ficheiro: este repo não tem package.json nem
+    // lockfile, só workflows.
+    'helpers:pinGitHubActionDigests',
+  ],
+  timezone: 'Europe/Lisbon',
+  schedule: ['before 8am on monday'],
+  // Espera 3 dias antes de propor uma versão nova — janela de segurança
+  // contra releases comprometidos publicados e retirados pouco depois
+  // (mesmo raciocínio do personal-site, aplicado ao único ecossistema que
+  // este repo tem: github-actions).
+  minimumReleaseAge: '3 days',
+  labels: ['dependencies', 'github-actions'],
+}

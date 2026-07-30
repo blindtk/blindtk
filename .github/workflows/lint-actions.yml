@@ -5,6 +5,11 @@ name: Lint GitHub Actions workflows
 # ${{ }} em steps `run:` — os riscos reais de um workflow com contents:write
 # e acesso a secrets.GITHUB_TOKEN. Apenas leitura, nao interfere com o
 # update-profile-widgets.yml.
+#
+# Gatilho `schedule` + `workflow_dispatch` (revisão de segurança de CI/CD,
+# 2026-07-30), além do `paths: .github/workflows/**`: um workflow que só
+# corre quando se mexe nele próprio nunca deteta uma regra nova do zizmor ou
+# uma mudança de comportamento de uma action já usada.
 
 on:
   push:
@@ -13,6 +18,8 @@ on:
   pull_request:
     paths:
       - ".github/workflows/**"
+  schedule:
+    - cron: "30 6 * * 1" # semanal, a seguir ao update-profile-widgets.yml
   workflow_dispatch:
 
 permissions:
@@ -21,11 +28,21 @@ permissions:
 jobs:
   zizmor:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           persist-credentials: false
       - name: Instalar zizmor
-        run: pip install zizmor
+        # Versão cravada, como no personal-site (security.yml): a 1.27.0
+        # foi retirada do PyPI por advisory de segurança
+        # (GHSA-f42p-wjw5-97qh) — sem pin, cada execução corre uma versão
+        # diferente e sem aviso.
+        run: pip install zizmor==1.28.0
       - name: Analisar workflows
-        run: zizmor .github/workflows
+        env:
+          # permite as auditorias online (ex.: deteção de commits impostores)
+          GH_TOKEN: ${{ github.token }}
+        # --min-severity medium: mesmo gate do personal-site (security.yml).
+        run: zizmor --min-severity medium .github/workflows/
