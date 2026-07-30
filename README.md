@@ -58,6 +58,7 @@ moving into security.
 ![OWASP Top 10](https://img.shields.io/badge/OWASP%20Top%2010-3ddc84?style=flat-square&logo=owasp&logoColor=white&labelColor=0a0d11)
 ![ISO 27001](https://img.shields.io/badge/ISO%2027001-4aa8ff?style=flat-square&labelColor=0a0d11)
 ![NIS2](https://img.shields.io/badge/NIS2-f5b544?style=flat-square&labelColor=0a0d11)
+![OpenSSF Scorecard](https://img.shields.io/badge/OpenSSF%20Scorecard-3ddc84?style=flat-square&labelColor=0a0d11)
 
 ## Projects
 
