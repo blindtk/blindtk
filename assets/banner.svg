@@ -1,0 +1,11 @@
+<svg width="854" height="170" viewBox="0 0 854 170" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0a0d11"/>
+      <stop offset="100%" stop-color="#123d2b"/>
+    </linearGradient>
+  </defs>
+  <rect width="854" height="170" fill="url(#bg)"/>
+  <text x="427" y="88" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="42" font-weight="700" fill="#e6edf3">Daniel Malaco</text>
+  <text x="427" y="118" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="500" fill="#e6edf3">Information Security Engineer &#183; Porto, PT</text>
+</svg>
