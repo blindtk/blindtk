@@ -6,22 +6,24 @@ name: Lint GitHub Actions workflows
 # e acesso a secrets.GITHUB_TOKEN. Apenas leitura, nao interfere com o
 # update-profile-widgets.yml.
 #
-# Gatilho `schedule` + `workflow_dispatch` (revisão de segurança de CI/CD,
-# 2026-07-30), além do `paths: .github/workflows/**`: um workflow que só
-# corre quando se mexe nele próprio nunca deteta uma regra nova do zizmor ou
-# uma mudança de comportamento de uma action já usada.
+# Sem filtro de `paths` (removido 2026-07-30, follow-up à revisão de
+# segurança de CI/CD): o job `zizmor` é um status check obrigatório no
+# ruleset de `main`. Um check obrigatório que só corre quando os workflows
+# mudam fica "Expected — Waiting for status" para sempre em qualquer PR que
+# não toque em .github/workflows/**, bloqueando o merge sem nunca resolver
+# — só desbloqueável com bypass. Correr sempre custa uns segundos de CI
+# (install + scan) e garante que o check obrigatório de facto conclui em
+# toda PR, não só nas que mexem em workflows.
+#
+# `schedule` + `workflow_dispatch` mantidos como reforço: apanham uma regra
+# nova do zizmor ou uma mudança de comportamento numa action já usada, sem
+# depender de haver uma PR a correr nessa altura.
 
 on:
   push:
-    paths:
-      - ".github/workflows/**"
-      - ".github/zizmor-requirements.txt"
-      - ".github/zizmor.yml"
+    branches: [main]
   pull_request:
-    paths:
-      - ".github/workflows/**"
-      - ".github/zizmor-requirements.txt"
-      - ".github/zizmor.yml"
+    branches: [main]
   schedule:
     - cron: "30 6 * * 1" # semanal, a seguir ao update-profile-widgets.yml
   workflow_dispatch:
