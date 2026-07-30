@@ -1,14 +1,14 @@
 <img src="./assets/banner.svg" alt="Banner: Daniel Malaco, Information Security Engineer, Porto, Portugal" />
 
 Information Security Engineer designing and operating the security
-architecture for critical road infrastructure in Portugal. Came up through
-networks before moving into security.
+architecture for critical infrastructure. Came up through networks before
+moving into security.
 
 ## What I do
 
-- Design, deploy and operate the security architecture for critical road
-  infrastructure in Portugal: NGFW, AV/EDR, vulnerability analysis, SIEM,
-  IAM, WAF, secure email gateway.
+- Design, deploy and operate the security architecture for critical
+  infrastructure: NGFW, AV/EDR, vulnerability analysis, SIEM, IAM, WAF,
+  secure email gateway.
 - Run the full detection cycle end to end — from designing the control to
   analyzing the event and closing the incident through ITSM.
 - Bring an offensive perspective into defensive work — thinking like an
@@ -115,14 +115,14 @@ infrastructure, not public code.
 <summary><strong>Português (Europeu)</strong></summary>
 
 Information Security Engineer a desenhar e operar a arquitetura de
-segurança de infraestrutura crítica rodoviária em Portugal. Veio das redes
-antes de passar para a segurança.
+segurança de infraestrutura crítica. Veio das redes antes de passar para a
+segurança.
 
 ### O que faço
 
-- Desenho, deployment e operação da arquitetura de segurança da
-  infraestrutura crítica rodoviária em Portugal: NGFW, AV/EDR, análise de
-  vulnerabilidades, SIEM, IAM, WAF, security email gateway.
+- Desenho, deployment e operação da arquitetura de segurança de
+  infraestrutura crítica: NGFW, AV/EDR, análise de vulnerabilidades, SIEM,
+  IAM, WAF, security email gateway.
 - Ciclo completo de deteção: do desenho do controlo à análise do evento e
   ao fecho do incidente em ITSM.
 - Traz uma perspetiva ofensiva para o trabalho defensivo — pensar como um

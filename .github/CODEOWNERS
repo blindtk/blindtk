@@ -1,0 +1,4 @@
+# Single-maintainer repository — every path routes to the same reviewer.
+# Exists so "Require review from Code Owners" on the main ruleset has
+# something to enforce against.
+* @blindtk

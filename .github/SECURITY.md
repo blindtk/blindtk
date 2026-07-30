@@ -1,37 +1,37 @@
-# Política de segurança
+# Security Policy
 
-Este repositório é o perfil GitHub de Daniel Malaco: um `README.md`, cinco
-SVGs gerados em `assets/`, e dois workflows
+This repository is Daniel Malaco's GitHub profile: a `README.md`, five
+SVGs generated into `assets/`, and four workflows
 (`.github/workflows/update-profile-widgets.yml`,
-`.github/workflows/lint-actions.yml`) que os mantêm atualizados. Não há
-aplicação nem dados de utilizadores aqui — a superfície relevante é a
-própria cadeia de CI/CD: `update-profile-widgets.yml` corre com
-`permissions: contents: write` no job que comita, e o job `generate` corre
-código de terceiros (a stats-action, o gerador de troféus) antes disso.
+`.github/workflows/lint-actions.yml`, `.github/workflows/gitleaks.yml`,
+`.github/workflows/scorecard.yml`) that keep it updated and audited. There
+is no application or user data here — the relevant surface is the CI/CD
+chain itself: `update-profile-widgets.yml` runs with `permissions:
+contents: write` in the job that commits, and its `generate` job runs
+third-party code (the stats action, the trophy generator) before that.
 
-## Como reportar uma vulnerabilidade
+## How to report a vulnerability
 
-Reporta em **privado**, nunca numa Issue pública (uma Issue expõe a falha a
-toda a gente antes de estar corrigida):
+Report **privately**, never in a public Issue (an Issue exposes the flaw
+to everyone before it's fixed):
 
-- Através da página de contactos: <https://danielmala.co/contactos/>
+- Through the contact page: <https://danielmala.co/contactos/>
 
-Ver também o `security.txt` do site
+Also see the site's `security.txt`
 ([`/.well-known/security.txt`](https://danielmala.co/.well-known/security.txt)),
-no formato [RFC 9116](https://www.rfc-editor.org/rfc/rfc9116).
+in [RFC 9116](https://www.rfc-editor.org/rfc/rfc9116) format.
 
-Inclui, se possível: o que encontraste, os passos para reproduzir, e o
-impacto que lhe atribuis.
+Include, if possible: what you found, steps to reproduce, and the impact
+you'd assign it.
 
-## O que esperar
+## What to expect
 
-- Resposta normalmente em **24–48 h, em dias úteis**.
-- Pedimos divulgação coordenada: dá tempo para corrigir antes de tornar
-  público.
+- Response typically within **24–48h, on business days**.
+- We ask for coordinated disclosure: give time to fix before going public.
 
-## Fora de âmbito
+## Out of scope
 
-Relatórios automáticos de *scanners* sem impacto demonstrável (ex.: uma
-action sem pin em falta que já esteja corrigida, um badge de terceiro
-offline). Ver [`blindtk/personal-site`](https://github.com/blindtk/personal-site)
-para a política de segurança completa do site e do Worker.
+Automated scanner reports with no demonstrable impact (e.g., a missing
+action pin that's already been fixed, a third-party badge that's
+offline). See [`blindtk/personal-site`](https://github.com/blindtk/personal-site)
+for the full security policy covering the site and the Worker.
