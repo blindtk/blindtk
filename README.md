@@ -29,7 +29,6 @@ _Network & email_
 ![Huawei](https://img.shields.io/badge/Huawei-f5b544?style=flat-square&logo=huawei&logoColor=white&labelColor=0a0d11)
 ![pfSense](https://img.shields.io/badge/pfSense-4aa8ff?style=flat-square&logo=pfsense&logoColor=white&labelColor=0a0d11)
 ![Cloudflare](https://img.shields.io/badge/Cloudflare-3ddc84?style=flat-square&logo=cloudflare&logoColor=white&labelColor=0a0d11)
-![Security Email Gateway](https://img.shields.io/badge/Security%20Email%20Gateway-f5b544?style=flat-square&labelColor=0a0d11)
 
 _Endpoint & detection_
 
@@ -40,9 +39,8 @@ _Endpoint & detection_
 
 _Identity & access_
 
-![IAM](https://img.shields.io/badge/IAM-3ddc84?style=flat-square&labelColor=0a0d11)
+![Entra ID](https://img.shields.io/badge/Entra%20ID-3ddc84?style=flat-square&labelColor=0a0d11)
 ![Active Directory](https://img.shields.io/badge/Active%20Directory-f5b544?style=flat-square&labelColor=0a0d11)
-![KeePassXC](https://img.shields.io/badge/KeePassXC-4aa8ff?style=flat-square&logo=keepassxc&logoColor=white&labelColor=0a0d11)
 
 _Offensive security_
 
@@ -50,10 +48,6 @@ _Offensive security_
 ![Metasploit](https://img.shields.io/badge/Metasploit-f5b544?style=flat-square&logo=metasploit&logoColor=white&labelColor=0a0d11)
 ![Burp Suite](https://img.shields.io/badge/Burp%20Suite-4aa8ff?style=flat-square&logo=burpsuite&logoColor=white&labelColor=0a0d11)
 ![Wireshark](https://img.shields.io/badge/Wireshark-3ddc84?style=flat-square&logo=wireshark&logoColor=white&labelColor=0a0d11)
-
-_Resilience_
-
-![Business Continuity Planning](https://img.shields.io/badge/Business%20Continuity%20Planning-f5b544?style=flat-square&labelColor=0a0d11)
 
 **Platforms**
 
@@ -74,11 +68,6 @@ _Cloud_
 ![AWS](https://img.shields.io/badge/AWS-4aa8ff?style=flat-square&labelColor=0a0d11)
 ![Azure](https://img.shields.io/badge/Azure-3ddc84?style=flat-square&labelColor=0a0d11)
 
-_Enterprise IT_
-
-![Rapid7 InsightVM](https://img.shields.io/badge/Rapid7%20InsightVM-f5b544?style=flat-square&labelColor=0a0d11)
-![ServiceNow](https://img.shields.io/badge/ServiceNow-4aa8ff?style=flat-square&labelColor=0a0d11)
-
 **Containers & DevOps**
 
 ![Docker](https://img.shields.io/badge/Docker-4aa8ff?style=flat-square&logo=docker&logoColor=white&labelColor=0a0d11)
@@ -86,14 +75,6 @@ _Enterprise IT_
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-f5b544?style=flat-square&logo=kubernetes&logoColor=white&labelColor=0a0d11)
 ![GitHub](https://img.shields.io/badge/GitHub-4aa8ff?style=flat-square&logo=github&logoColor=white&labelColor=0a0d11)
 ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-3ddc84?style=flat-square&logo=githubactions&logoColor=white&labelColor=0a0d11)
-
-**Languages**
-
-![Python](https://img.shields.io/badge/Python-3ddc84?style=flat-square&logo=python&logoColor=white&labelColor=0a0d11)
-![Bash](https://img.shields.io/badge/Bash-f5b544?style=flat-square&logo=gnubash&logoColor=white&labelColor=0a0d11)
-![PowerShell](https://img.shields.io/badge/PowerShell-4aa8ff?style=flat-square&labelColor=0a0d11)
-![Go](https://img.shields.io/badge/Go-3ddc84?style=flat-square&logo=go&logoColor=white&labelColor=0a0d11)
-![C/C++](https://img.shields.io/badge/C%2FC%2B%2B-f5b544?style=flat-square&logo=cplusplus&logoColor=white&labelColor=0a0d11)
 
 **Frameworks**
 
