@@ -23,58 +23,58 @@ moving into security.
 
 _Network_
 
-![Fortinet](https://img.shields.io/badge/Fortinet-EE1F25?style=flat-square&logo=fortinet&logoColor=white&labelColor=0a0d11)
-![Palo Alto Networks](https://img.shields.io/badge/Palo%20Alto%20Networks-4aa8ff?style=flat-square&logo=paloaltonetworks&logoColor=white&labelColor=0a0d11)
-![Cloudflare](https://img.shields.io/badge/Cloudflare-3ddc84?style=flat-square&logo=cloudflare&logoColor=white&labelColor=0a0d11)
+![Fortinet](https://img.shields.io/badge/Fortinet-B91C1C?style=flat-square&logo=fortinet&logoColor=white&labelColor=0a0d11)
+![Palo Alto Networks](https://img.shields.io/badge/Palo%20Alto%20Networks-2563eb?style=flat-square&logo=paloaltonetworks&logoColor=white&labelColor=0a0d11)
+![Cloudflare](https://img.shields.io/badge/Cloudflare-15803d?style=flat-square&logo=cloudflare&logoColor=white&labelColor=0a0d11)
 
 _Endpoint & detection_
 
-![AV](https://img.shields.io/badge/AV-4aa8ff?style=flat-square&labelColor=0a0d11)
-![EDR](https://img.shields.io/badge/EDR-3ddc84?style=flat-square&labelColor=0a0d11)
-![Splunk](https://img.shields.io/badge/Splunk-f5b544?style=flat-square&logo=splunk&logoColor=white&labelColor=0a0d11)
-![Elastic](https://img.shields.io/badge/Elastic-4aa8ff?style=flat-square&logo=elastic&logoColor=white&labelColor=0a0d11)
+![AV](https://img.shields.io/badge/AV-2563eb?style=flat-square&labelColor=0a0d11)
+![EDR](https://img.shields.io/badge/EDR-15803d?style=flat-square&labelColor=0a0d11)
+![Splunk](https://img.shields.io/badge/Splunk-b45309?style=flat-square&logo=splunk&logoColor=white&labelColor=0a0d11)
+![Elastic](https://img.shields.io/badge/Elastic-2563eb?style=flat-square&logo=elastic&logoColor=white&labelColor=0a0d11)
 
 _Identity & access_
 
-![Entra ID](https://img.shields.io/badge/Entra%20ID-3ddc84?style=flat-square&labelColor=0a0d11)
-![Active Directory](https://img.shields.io/badge/Active%20Directory-f5b544?style=flat-square&labelColor=0a0d11)
+![Entra ID](https://img.shields.io/badge/Entra%20ID-15803d?style=flat-square&labelColor=0a0d11)
+![Active Directory](https://img.shields.io/badge/Active%20Directory-b45309?style=flat-square&labelColor=0a0d11)
 
 **Platforms**
 
 _Virtualization & storage_
 
-![VMware](https://img.shields.io/badge/VMware-4aa8ff?style=flat-square&logo=vmware&logoColor=white&labelColor=0a0d11)
-![NetApp](https://img.shields.io/badge/NetApp-3ddc84?style=flat-square&logo=netapp&logoColor=white&labelColor=0a0d11)
+![VMware](https://img.shields.io/badge/VMware-2563eb?style=flat-square&logo=vmware&logoColor=white&labelColor=0a0d11)
+![NetApp](https://img.shields.io/badge/NetApp-15803d?style=flat-square&logo=netapp&logoColor=white&labelColor=0a0d11)
 
 _Operating systems_
 
-![Windows](https://img.shields.io/badge/Windows-f5b544?style=flat-square&labelColor=0a0d11)
-![Ubuntu](https://img.shields.io/badge/Ubuntu-4aa8ff?style=flat-square&logo=ubuntu&logoColor=white&labelColor=0a0d11)
-![Red Hat](https://img.shields.io/badge/Red%20Hat-3ddc84?style=flat-square&logo=redhat&logoColor=white&labelColor=0a0d11)
-![Kali Linux](https://img.shields.io/badge/Kali%20Linux-f5b544?style=flat-square&logo=kalilinux&logoColor=white&labelColor=0a0d11)
+![Windows](https://img.shields.io/badge/Windows-b45309?style=flat-square&labelColor=0a0d11)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-2563eb?style=flat-square&logo=ubuntu&logoColor=white&labelColor=0a0d11)
+![Red Hat](https://img.shields.io/badge/Red%20Hat-15803d?style=flat-square&logo=redhat&logoColor=white&labelColor=0a0d11)
+![Kali Linux](https://img.shields.io/badge/Kali%20Linux-b45309?style=flat-square&logo=kalilinux&logoColor=white&labelColor=0a0d11)
 
 _Cloud_
 
-![AWS](https://img.shields.io/badge/AWS-4aa8ff?style=flat-square&labelColor=0a0d11)
-![Azure](https://img.shields.io/badge/Azure-3ddc84?style=flat-square&labelColor=0a0d11)
+![AWS](https://img.shields.io/badge/AWS-2563eb?style=flat-square&labelColor=0a0d11)
+![Azure](https://img.shields.io/badge/Azure-15803d?style=flat-square&labelColor=0a0d11)
 
 **Containers & DevOps**
 
-![Docker](https://img.shields.io/badge/Docker-4aa8ff?style=flat-square&logo=docker&logoColor=white&labelColor=0a0d11)
-![Podman](https://img.shields.io/badge/Podman-3ddc84?style=flat-square&logo=podman&logoColor=white&labelColor=0a0d11)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-f5b544?style=flat-square&logo=kubernetes&logoColor=white&labelColor=0a0d11)
-![GitHub](https://img.shields.io/badge/GitHub-4aa8ff?style=flat-square&logo=github&logoColor=white&labelColor=0a0d11)
-![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-3ddc84?style=flat-square&logo=githubactions&logoColor=white&labelColor=0a0d11)
+![Docker](https://img.shields.io/badge/Docker-2563eb?style=flat-square&logo=docker&logoColor=white&labelColor=0a0d11)
+![Podman](https://img.shields.io/badge/Podman-15803d?style=flat-square&logo=podman&logoColor=white&labelColor=0a0d11)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-b45309?style=flat-square&logo=kubernetes&logoColor=white&labelColor=0a0d11)
+![GitHub](https://img.shields.io/badge/GitHub-2563eb?style=flat-square&logo=github&logoColor=white&labelColor=0a0d11)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-15803d?style=flat-square&logo=githubactions&logoColor=white&labelColor=0a0d11)
 
 **Frameworks**
 
-![MITRE ATT&CK](https://img.shields.io/badge/MITRE%20ATT%26CK-3ddc84?style=flat-square&labelColor=0a0d11)
-![CIS Benchmarks & Controls](https://img.shields.io/badge/CIS%20Benchmarks%20%26%20Controls-4aa8ff?style=flat-square&labelColor=0a0d11)
-![CISA CPG](https://img.shields.io/badge/CISA%20CPG-f5b544?style=flat-square&labelColor=0a0d11)
-![OWASP Top 10](https://img.shields.io/badge/OWASP%20Top%2010-3ddc84?style=flat-square&logo=owasp&logoColor=white&labelColor=0a0d11)
-![ISO 27001](https://img.shields.io/badge/ISO%2027001-4aa8ff?style=flat-square&labelColor=0a0d11)
-![NIS2](https://img.shields.io/badge/NIS2-f5b544?style=flat-square&labelColor=0a0d11)
-![OpenSSF Scorecard](https://img.shields.io/badge/OpenSSF%20Scorecard-3ddc84?style=flat-square&labelColor=0a0d11)
+![MITRE ATT&CK](https://img.shields.io/badge/MITRE%20ATT%26CK-15803d?style=flat-square&labelColor=0a0d11)
+![CIS Benchmarks & Controls](https://img.shields.io/badge/CIS%20Benchmarks%20%26%20Controls-2563eb?style=flat-square&labelColor=0a0d11)
+![CISA CPG](https://img.shields.io/badge/CISA%20CPG-b45309?style=flat-square&labelColor=0a0d11)
+![OWASP Top 10](https://img.shields.io/badge/OWASP%20Top%2010-15803d?style=flat-square&logo=owasp&logoColor=white&labelColor=0a0d11)
+![ISO 27001](https://img.shields.io/badge/ISO%2027001-2563eb?style=flat-square&labelColor=0a0d11)
+![NIS2](https://img.shields.io/badge/NIS2-b45309?style=flat-square&labelColor=0a0d11)
+![OpenSSF Scorecard](https://img.shields.io/badge/OpenSSF%20Scorecard-15803d?style=flat-square&labelColor=0a0d11)
 
 ## Projects
 
@@ -134,13 +134,13 @@ infrastructure, not public code.
 
 ## Contact
 
-[![Website](https://img.shields.io/badge/Website-danielmala.co-3ddc84?style=flat-square&labelColor=0a0d11)](https://danielmala.co)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-danielmalaco-4aa8ff?style=flat-square&labelColor=0a0d11)](https://www.linkedin.com/in/danielmalaco)
-[![Email](https://img.shields.io/badge/Email-me%40danielmala.co-f5b544?style=flat-square&logo=mailru&logoColor=white&labelColor=0a0d11)](mailto:me@danielmala.co)
-[![Credly](https://img.shields.io/badge/Credly-badges-3ddc84?style=flat-square&logo=credly&logoColor=white&labelColor=0a0d11)](https://www.credly.com/users/daniel-malaco/badges)
+[![Website](https://img.shields.io/badge/Website-danielmala.co-15803d?style=flat-square&labelColor=0a0d11)](https://danielmala.co)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-danielmalaco-2563eb?style=flat-square&labelColor=0a0d11)](https://www.linkedin.com/in/danielmalaco)
+[![Email](https://img.shields.io/badge/Email-me%40danielmala.co-b45309?style=flat-square&logo=mailru&logoColor=white&labelColor=0a0d11)](mailto:me@danielmala.co)
+[![Credly](https://img.shields.io/badge/Credly-badges-15803d?style=flat-square&logo=credly&logoColor=white&labelColor=0a0d11)](https://www.credly.com/users/daniel-malaco/badges)
 
 <div align="right">
 
-<img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fblindtk&countColor=%233ddc84&style=flat-square&labelColor=%230a0d11" alt="Visitor count badge for this GitHub profile" />
+<img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fblindtk&countColor=%2315803d&style=flat-square&labelColor=%230a0d11" alt="Visitor count badge for this GitHub profile" />
 
 </div>
