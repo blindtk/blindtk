@@ -387,6 +387,19 @@ jobs:
         # precisa das credenciais do checkout para dar push ao branch
         # automático e para o `gh pr create` abaixo.
 
+      - name: Remover SVGs rastreados antes de repor os novos
+        # `git add assets/*.svg` (abaixo) só adiciona/atualiza — nunca
+        # remove um ficheiro que o job `generate` já não produz. Foi assim
+        # que assets/github-stats.svg e assets/top-langs.svg ficaram
+        # órfãos no repositório depois de esses cartões serem cortados do
+        # workflow (2026-07-31): removidos do README e do `generate`, mas
+        # nunca do `commit`, por isso continuaram lá indefinidamente.
+        # Começar por remover tudo o que já está versionado e só depois
+        # repor a partir do artefacto (próximo passo) garante que
+        # assets/*.svg reflete exatamente o que o `generate` produziu
+        # nesta execução, nem mais nem menos.
+        run: git rm -q --ignore-unmatch assets/*.svg
+
       - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
         with:
           name: profile-widgets
