@@ -4,24 +4,34 @@ name: Update profile widgets
 # dentro de blindtk/blindtk.
 #
 # Gera localmente, e comita para assets/, todos os widgets dinâmicos do
-# README: banner, stats/top-langs, troféus e contagem de repos com
-# estrela. O banner deixou de depender do capsule-render.vercel.app: essa
-# versão usa um <style> CSS com animação de fade-in que, confirmado em
-# 2026-07-30, fica presa a opacity:0 quando carregada via <img> na página
-# real do perfil (mesmo com animation=false no URL) — substituído por um
-# SVG estático gerado por nós, sem <style> nem animação. O streak
-# (demolab.com) continua a funcionar e fica como estava.
+# README: banner, streak de contribuições, troféus e contagem de repos
+# com estrela. O banner deixou de depender do capsule-render.vercel.app:
+# essa versão usa um <style> CSS com animação de fade-in que, confirmado
+# em 2026-07-30, fica presa a opacity:0 quando carregada via <img> na
+# página real do perfil (mesmo com animation=false no URL) — substituído
+# por um SVG estático gerado por nós, sem <style> nem animação. O streak
+# (streak-stats.demolab.com) deixou de ser consultado ao vivo pela mesma
+# razão: streak.svg é agora calculado aqui a partir do
+# contributionsCollection da API GraphQL (grelha estilo contribution
+# graph das últimas 20 semanas + streak atual/mais longa) e comitado como
+# SVG estático, tal como o banner. O cartão de stats gerais
+# (commits/repos/followers) e o de top languages foram removidos: o
+# primeiro é um sinal fraco para um perfil cujo trabalho real é interno,
+# e o segundo ficava permanentemente vazio ("No languages data") porque o
+# GITHUB_TOKEN por omissão só vê este repositório, não os repos privados
+# onde o trabalho de facto acontece — corrigir isso exigiria um PAT com
+# leitura alargada, decisão de segurança fora do âmbito deste workflow.
 #
 # Dois jobs, não um (revisão de segurança de CI/CD, 2026-07-30): o job
-# `generate` corre código de terceiros (a stats-action, e sobretudo o
-# gerador de troféus, checkout de ryo-ma/github-profile-trophy a correr
-# via Deno com GITHUB_TOKEN1 no ambiente) e por isso só recebe
-# `permissions: contents: read` — mesmo que esse código seja comprometido
-# ou a tag movida, o token que ele vê não sabe escrever no repo. Só o job
-# `commit`, que não corre nenhum código de terceiros, tem `contents:
-# write` (+ `pull-requests: write`, ver abaixo), e o único artefacto que
-# atravessa a fronteira é o conjunto de SVGs já gerados (via
-# actions/upload-artifact + download-artifact).
+# `generate` corre código de terceiros (sobretudo o gerador de troféus,
+# checkout de ryo-ma/github-profile-trophy a correr via Deno com
+# GITHUB_TOKEN1 no ambiente) e por isso só recebe `permissions: contents:
+# read` — mesmo que esse código seja comprometido ou a tag movida, o
+# token que ele vê não sabe escrever no repo. Só o job `commit`, que não
+# corre nenhum código de terceiros, tem `contents: write` (+
+# `pull-requests: write`, ver abaixo), e o único artefacto que atravessa
+# a fronteira é o conjunto de SVGs já gerados (via actions/upload-artifact
+# + download-artifact).
 #
 # O job `commit` abre PR em vez de dar push direto a main (revisão de
 # segurança de CI/CD, follow-up 2026-07-30): o ruleset do main passou a
@@ -69,21 +79,153 @@ jobs:
           </svg>
           SVGEOF
 
-      - name: Gerar cartão de stats
-        uses: stats-organization/github-readme-stats-action@e856fc8de9d7729b463c468911e232cfbdc3d55e # v2.0.2
-        with:
-          card: stats
-          options: username=blindtk&show_icons=true&hide_border=true&bg_color=0a0d11&title_color=3ddc84&icon_color=3ddc84&text_color=8593a5&ring_color=3ddc84&hide=stars,prs,issues,contribs
-          path: assets/github-stats.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Calcular streak de contribuições e gerar streak.svg
+        env:
+          # o token passa por env, nunca interpolado dentro do script —
+          # mesmo padrão do passo "Obter contagem de repositórios com
+          # estrela" abaixo.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p assets
+          python3 - <<'PYEOF'
+          import datetime
+          import json
+          import os
+          import urllib.request
 
-      - name: Gerar cartão de top languages
-        uses: stats-organization/github-readme-stats-action@e856fc8de9d7729b463c468911e232cfbdc3d55e # v2.0.2
-        with:
-          card: top-langs
-          options: username=blindtk&layout=compact&hide_border=true&bg_color=0a0d11&title_color=3ddc84&text_color=8593a5&langs_count=8
-          path: assets/top-langs.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token = os.environ["GH_TOKEN"]
+          login = "blindtk"
+
+          def gql(query):
+              req = urllib.request.Request(
+                  "https://api.github.com/graphql",
+                  data=json.dumps({"query": query}).encode(),
+                  headers={
+                      "Authorization": f"bearer {token}",
+                      "Content-Type": "application/json",
+                  },
+                  method="POST",
+              )
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  return json.load(resp)
+
+          created_at = datetime.datetime.fromisoformat(
+              gql(f'query {{ user(login: "{login}") {{ createdAt }} }}')
+              ["data"]["user"]["createdAt"].replace("Z", "+00:00")
+          )
+          now = datetime.datetime.now(datetime.timezone.utc)
+
+          # A API só aceita janelas contributionsCollection(from, to) de no
+          # máximo um ano, por isso percorremos a conta inteira em fatias
+          # anuais para obter o histórico completo (não só o ano corrente).
+          counts = {}
+          window_start = created_at
+          while window_start < now:
+              window_end = min(window_start + datetime.timedelta(days=365), now)
+              data = gql(f'''
+                query {{
+                  user(login: "{login}") {{
+                    contributionsCollection(from: "{window_start.isoformat()}", to: "{window_end.isoformat()}") {{
+                      contributionCalendar {{
+                        weeks {{
+                          contributionDays {{
+                            date
+                            contributionCount
+                          }}
+                        }}
+                      }}
+                    }}
+                  }}
+                }}
+              ''')
+              weeks = data["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
+              for week in weeks:
+                  for day in week["contributionDays"]:
+                      counts[day["date"]] = counts.get(day["date"], 0) + day["contributionCount"]
+              window_start = window_end
+
+          dates = sorted(counts)
+
+          # Percorre dia a dia (não só as chaves presentes em counts): a API
+          # deve devolver todos os dias do intervalo, mas se algum faltar por
+          # qualquer razão, tratá-lo implicitamente como 0 é mais seguro do
+          # que saltá-lo — saltar um dia em falta ligaria duas streaks
+          # separadas por esse buraco, inflacionando a mais longa.
+          longest = 0
+          run = 0
+          d = datetime.date.fromisoformat(dates[0])
+          last = datetime.date.fromisoformat(dates[-1])
+          while d <= last:
+              if counts.get(d.isoformat(), 0) > 0:
+                  run += 1
+                  longest = max(longest, run)
+              else:
+                  run = 0
+              d += datetime.timedelta(days=1)
+
+          current = 0
+          cursor = now.date()
+          if counts.get(cursor.isoformat(), 0) == 0:
+              cursor -= datetime.timedelta(days=1)
+          while counts.get(cursor.isoformat(), 0) > 0:
+              current += 1
+              cursor -= datetime.timedelta(days=1)
+
+          # Grelha estilo GitHub contribution graph: últimas 20 semanas
+          # (140 dias) terminando hoje, 7 linhas (um dia por linha), uma
+          # coluna por semana.
+          WEEKS = 20
+          DAYS = 7
+          CELL, GAP = 11, 3
+          LEFT, TOP = 16, 34
+          COLORS = ["#161c28", "#0e3323", "#155c37", "#1f8a4d", "#3ddc84"]
+
+          def level_for(count):
+              if count <= 0:
+                  return 0
+              if count <= 2:
+                  return 1
+              if count <= 5:
+                  return 2
+              if count <= 9:
+                  return 3
+              return 4
+
+          end_date = now.date()
+          start_date = end_date - datetime.timedelta(days=WEEKS * DAYS - 1)
+
+          cells = []
+          d = start_date
+          col = row = 0
+          while d <= end_date:
+              level = level_for(counts.get(d.isoformat(), 0))
+              x = LEFT + col * (CELL + GAP)
+              y = TOP + row * (CELL + GAP)
+              cells.append(
+                  f'<rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" rx="2" fill="{COLORS[level]}"/>'
+              )
+              row += 1
+              if row == DAYS:
+                  row = 0
+                  col += 1
+              d += datetime.timedelta(days=1)
+
+          width = LEFT + WEEKS * (CELL + GAP) + 16
+          height = TOP + DAYS * (CELL + GAP) + 34
+
+          svg = f'''<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" xmlns="http://www.w3.org/2000/svg">
+            <rect width="{width}" height="{height}" rx="8" fill="#0a0d11" stroke="#161c28"/>
+            <text x="16" y="20" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#e6edf3">Contribution streak</text>
+            {"".join(cells)}
+            <text x="16" y="{height - 12}" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#8593a5">Current <tspan fill="#3ddc84" font-weight="700">{current}</tspan> &#183; Longest <tspan fill="#e6edf3" font-weight="700">{longest}</tspan></text>
+          </svg>
+          '''
+
+          with open("assets/streak.svg", "w", encoding="utf-8") as f:
+              f.write(svg)
+
+          print(f"current={current} longest={longest} days_seen={len(dates)}")
+          PYEOF
 
       - name: Checkout ryo-ma/github-profile-trophy (tag fixa v1.0)
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
@@ -189,7 +331,13 @@ jobs:
           STAR_COUNT: ${{ steps.starred.outputs.count }}
         run: |
           curl -sS -o assets/stars-given.svg \
-            "https://img.shields.io/badge/Repos%20starred-${STAR_COUNT}-3ddc84?style=flat-square&labelColor=0a0d11"
+            "https://img.shields.io/badge/Repos%20starred-${STAR_COUNT}-15803d?style=flat-square&labelColor=0a0d11"
+          # 15803d em vez de 3ddc84: o shields.io escreve sempre o texto do
+          # badge a branco, e branco sobre 3ddc84 (verde claro, usado no
+          # resto do repo como cor de texto sobre fundo escuro, não como
+          # fundo) dá um contraste ~1.8:1 — abaixo do mínimo de 4.5:1 do
+          # WCAG AA, o número fica ilegível. 15803d (o mesmo verde já usado
+          # nos badges de Cloudflare/AV/Entra ID/MITRE no README) dá ~5:1.
           # Conteúdo vindo de um terceiro (img.shields.io), escrito
           # diretamente para um ficheiro que o job seguinte comita — nega
           # o ficheiro se não parecer um SVG estático inócuo (sem <script>,
@@ -229,6 +377,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout blindtk/blindtk
+        # zizmor: ignore[artipacked] persist-credentials fica true de propósito, ver comentário abaixo
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         # persist-credentials fica no valor por omissão (true): este job
         # precisa das credenciais do checkout para dar push ao branch
@@ -276,9 +425,9 @@ jobs:
           `permissions: contents: read`, sem escrita no repo).
 
           Antes de aprovar: abre o separador **Files changed** e confirma visualmente
-          que os 5 SVGs (`banner`, `github-stats`, `top-langs`, `trophies`,
-          `stars-given`) renderizam como esperado — os checks automáticos confirmam
-          que o workflow correu sem erros, não que o conteúdo gerado está correto.
+          que os 4 SVGs (`banner`, `streak`, `trophies`, `stars-given`) renderizam
+          como esperado — os checks automáticos confirmam que o workflow correu sem
+          erros, não que o conteúdo gerado está correto.
 
           ---
           _Aberto automaticamente — sem revisão de conteúdo antes deste ponto._
