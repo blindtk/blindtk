@@ -107,7 +107,7 @@ scan behind each claim.
 </div>
 
 <details>
-<summary>Como estas stats são geradas</summary>
+<summary>How these stats are generated</summary>
 
 Banner, contribution streak, trophies and the starred-repos count are
 generated weekly by
