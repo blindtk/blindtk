@@ -377,6 +377,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout blindtk/blindtk
+        # zizmor: ignore[artipacked] persist-credentials fica true de propósito, ver comentário abaixo
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         # persist-credentials fica no valor por omissão (true): este job
         # precisa das credenciais do checkout para dar push ao branch
