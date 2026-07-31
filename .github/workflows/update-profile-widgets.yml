@@ -331,7 +331,13 @@ jobs:
           STAR_COUNT: ${{ steps.starred.outputs.count }}
         run: |
           curl -sS -o assets/stars-given.svg \
-            "https://img.shields.io/badge/Repos%20starred-${STAR_COUNT}-3ddc84?style=flat-square&labelColor=0a0d11"
+            "https://img.shields.io/badge/Repos%20starred-${STAR_COUNT}-15803d?style=flat-square&labelColor=0a0d11"
+          # 15803d em vez de 3ddc84: o shields.io escreve sempre o texto do
+          # badge a branco, e branco sobre 3ddc84 (verde claro, usado no
+          # resto do repo como cor de texto sobre fundo escuro, não como
+          # fundo) dá um contraste ~1.8:1 — abaixo do mínimo de 4.5:1 do
+          # WCAG AA, o número fica ilegível. 15803d (o mesmo verde já usado
+          # nos badges de Cloudflare/AV/Entra ID/MITRE no README) dá ~5:1.
           # Conteúdo vindo de um terceiro (img.shields.io), escrito
           # diretamente para um ficheiro que o job seguinte comita — nega
           # o ficheiro se não parecer um SVG estático inócuo (sem <script>,
