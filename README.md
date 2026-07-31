@@ -21,13 +21,10 @@ moving into security.
 
 **Security**
 
-_Network & email_
+_Network_
 
 ![Fortinet](https://img.shields.io/badge/Fortinet-EE1F25?style=flat-square&logo=fortinet&logoColor=white&labelColor=0a0d11)
 ![Palo Alto Networks](https://img.shields.io/badge/Palo%20Alto%20Networks-4aa8ff?style=flat-square&logo=paloaltonetworks&logoColor=white&labelColor=0a0d11)
-![MikroTik](https://img.shields.io/badge/MikroTik-3ddc84?style=flat-square&logo=mikrotik&logoColor=white&labelColor=0a0d11)
-![Huawei](https://img.shields.io/badge/Huawei-f5b544?style=flat-square&logo=huawei&logoColor=white&labelColor=0a0d11)
-![pfSense](https://img.shields.io/badge/pfSense-4aa8ff?style=flat-square&logo=pfsense&logoColor=white&labelColor=0a0d11)
 ![Cloudflare](https://img.shields.io/badge/Cloudflare-3ddc84?style=flat-square&logo=cloudflare&logoColor=white&labelColor=0a0d11)
 
 _Endpoint & detection_
@@ -42,13 +39,6 @@ _Identity & access_
 ![Entra ID](https://img.shields.io/badge/Entra%20ID-3ddc84?style=flat-square&labelColor=0a0d11)
 ![Active Directory](https://img.shields.io/badge/Active%20Directory-f5b544?style=flat-square&labelColor=0a0d11)
 
-_Offensive security_
-
-![Kali Linux](https://img.shields.io/badge/Kali%20Linux-3ddc84?style=flat-square&logo=kalilinux&logoColor=white&labelColor=0a0d11)
-![Metasploit](https://img.shields.io/badge/Metasploit-f5b544?style=flat-square&logo=metasploit&logoColor=white&labelColor=0a0d11)
-![Burp Suite](https://img.shields.io/badge/Burp%20Suite-4aa8ff?style=flat-square&logo=burpsuite&logoColor=white&labelColor=0a0d11)
-![Wireshark](https://img.shields.io/badge/Wireshark-3ddc84?style=flat-square&logo=wireshark&logoColor=white&labelColor=0a0d11)
-
 **Platforms**
 
 _Virtualization & storage_
@@ -60,8 +50,8 @@ _Operating systems_
 
 ![Windows](https://img.shields.io/badge/Windows-f5b544?style=flat-square&labelColor=0a0d11)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-4aa8ff?style=flat-square&logo=ubuntu&logoColor=white&labelColor=0a0d11)
-![Debian](https://img.shields.io/badge/Debian-3ddc84?style=flat-square&logo=debian&logoColor=white&labelColor=0a0d11)
-![Red Hat](https://img.shields.io/badge/Red%20Hat-f5b544?style=flat-square&logo=redhat&logoColor=white&labelColor=0a0d11)
+![Red Hat](https://img.shields.io/badge/Red%20Hat-3ddc84?style=flat-square&logo=redhat&logoColor=white&labelColor=0a0d11)
+![Kali Linux](https://img.shields.io/badge/Kali%20Linux-f5b544?style=flat-square&logo=kalilinux&logoColor=white&labelColor=0a0d11)
 
 _Cloud_
 
