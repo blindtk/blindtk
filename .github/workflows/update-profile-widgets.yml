@@ -245,7 +245,7 @@ jobs:
         run: |
           deno run \
             --allow-net=api.github.com \
-            --allow-env=GITHUB_TOKEN1,GITHUB_TOKEN2 \
+            --allow-env=GITHUB_TOKEN1,GITHUB_TOKEN2,ENV_TYPE,GITHUB_API \
             --allow-read=. \
             --allow-write=../assets \
             ./render_svg.ts blindtk ../assets/trophies.svg matrix
@@ -255,17 +255,21 @@ jobs:
           # GH_TOKEN. Este job só tem `contents: read`, portanto mesmo que
           # este código de terceiros exfiltre o valor, o token não sabe
           # escrever no repo. --allow-net/--allow-env/--allow-read/
-          # --allow-write acima estão reduzidos ao que o
-          # render_svg.ts/GithubApiService.ts precisam de facto (confirmado
-          # lendo o código-fonte na v1.0: só chama api.github.com/graphql,
-          # só lê GITHUB_TOKEN1/GITHUB_TOKEN2, escreve só dentro de
-          # ../assets), em vez do --allow-net/--allow-env/--allow-read/
-          # --allow-write sem âmbito nenhum que a versão anterior dava a
-          # código que não controlamos. GITHUB_TOKEN2 fica por definir (só
-          # GITHUB_TOKEN1 é passado) — está no --allow-env só porque o
-          # código lê as duas variáveis incondicionalmente (TOKENS array em
-          # GithubApiService.ts) e o Deno nega o próprio Deno.env.get() para
-          # qualquer nome fora da lista, mesmo que o valor não exista.
+          # --allow-write acima estão reduzidos ao que o código realmente lê
+          # em toda a cadeia de imports a partir de render_svg.ts (não só o
+          # GithubApiService.ts): confirmado correndo a v1.0 pela primeira
+          # vez (2026-07-31) que faltavam duas variáveis à lista original —
+          # ENV_TYPE (lido incondicionalmente ao nível do módulo em
+          # src/Helpers/Logger.ts, usado por praticamente todo o resto) e
+          # GITHUB_API (idem em deps.ts, usado por request.ts) — o Deno
+          # nega Deno.env.get() para qualquer nome fora da lista mesmo só
+          # para ler o valor, e como estes dois correm à cabeça do módulo,
+          # nem chegam a executar o resto do script. Só chama
+          # api.github.com/graphql, só lê estas quatro variáveis, escreve
+          # só dentro de ../assets. GITHUB_TOKEN2, ENV_TYPE e GITHUB_API
+          # ficam por definir (só GITHUB_TOKEN1 é passado) — estão no
+          # --allow-env só para a leitura ser permitida, não porque tenham
+          # valor.
           GITHUB_TOKEN1: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Esconder categorias de troféus não alcançadas
