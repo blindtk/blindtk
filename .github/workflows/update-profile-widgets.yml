@@ -242,13 +242,31 @@ jobs:
 
       - name: Gerar cartão de troféus
         working-directory: .trophy-src
+        # 3 tentativas com backoff (5s, 15s): a chamada GraphQL feita pelo
+        # render_svg.ts já falhou de forma intermitente (2026-07-31 e
+        # 2026-08-03, sempre "Failed to fetch user info... rate limits",
+        # sem alteração de código entre tentativas, resolvido sempre por
+        # correr de novo) — sintoma de rate limit/hiccup transitório da API
+        # do GitHub, não de um problema no token ou no script.
         run: |
-          deno run \
+          attempt=1
+          max_attempts=3
+          delay=5
+          until deno run \
             --allow-net=api.github.com \
             --allow-env=GITHUB_TOKEN1,GITHUB_TOKEN2,ENV_TYPE,GITHUB_API \
             --allow-read=. \
             --allow-write=../assets \
-            ./render_svg.ts blindtk ../assets/trophies.svg matrix
+            ./render_svg.ts blindtk ../assets/trophies.svg matrix; do
+            if [ "$attempt" -ge "$max_attempts" ]; then
+              echo "::error::Gerador de troféus falhou após ${max_attempts} tentativas"
+              exit 1
+            fi
+            echo "Tentativa ${attempt}/${max_attempts} falhou, a repetir em ${delay}s..."
+            sleep "$delay"
+            attempt=$((attempt + 1))
+            delay=$((delay * 3))
+          done
         env:
           # Nome exato exigido pelo GithubApiService do render_svg.ts
           # oficial (ver env-example no repo) — não é GITHUB_TOKEN nem
