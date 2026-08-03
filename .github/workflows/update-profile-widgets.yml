@@ -240,6 +240,28 @@ jobs:
         with:
           deno-version: v2.x
 
+      - name: DEBUG TEMP - instrumentar erro real
+        working-directory: .trophy-src
+        run: |
+          python3 - <<'PYEOF'
+          p = "src/Services/request.ts"
+          s = open(p, encoding="utf-8").read()
+          s = s.replace(
+              "): ServiceError {\n  let isRateLimitExceeded = false;",
+              "): ServiceError {\n  console.error(\"DEBUG_RAW_RESPONSE:\", JSON.stringify(responseData));\n  let isRateLimitExceeded = false;",
+          )
+          open(p, "w", encoding="utf-8").write(s)
+
+          p2 = "src/Services/GithubApiService.ts"
+          s2 = open(p2, encoding="utf-8").read()
+          s2 = s2.replace(
+              "    } catch {\n      Logger.error(`Error fetching user info for username: ${username}`);\n      return new ServiceError(\"Not found\", EServiceKindError.NOT_FOUND);\n    }",
+              "    } catch (e) {\n      Logger.error(`Error fetching user info for username: ${username}`);\n      console.error(\"DEBUG_OUTER_CATCH:\", e instanceof Error ? (e.stack || e.message) : JSON.stringify(e));\n      return new ServiceError(\"Not found\", EServiceKindError.NOT_FOUND);\n    }",
+          )
+          open(p2, "w", encoding="utf-8").write(s2)
+          print("patched")
+          PYEOF
+
       - name: Gerar cartão de troféus
         working-directory: .trophy-src
         # 3 tentativas com backoff (5s, 15s): a chamada GraphQL feita pelo
