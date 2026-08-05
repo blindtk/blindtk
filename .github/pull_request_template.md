@@ -1,6 +1,6 @@
 <!--
 Para a PR automática do update-profile-widgets.yml: confirma no separador
-"Files changed" que os 4 SVGs (banner, streak, trophies, stars-given)
+"Files changed" que os 3 SVGs (banner, trophies, stars-given)
 renderizam como esperado antes de aprovar — os checks (zizmor, gitleaks,
 CodeQL, Scorecard) confirmam que o workflow correu sem erros, não que o
 conteúdo gerado é o certo.

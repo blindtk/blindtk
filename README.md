@@ -1,16 +1,29 @@
 <img src="./assets/banner.svg" alt="Banner: Daniel Malaco, Information Security Engineer, Porto, Portugal" />
 
 Information Security Engineer designing and operating the security
-architecture for critical infrastructure. Came up through networks before
-moving into security.
+architecture for critical road infrastructure. Came up through networks
+before moving into security. Most of the work is private — what's here
+demonstrates the practices behind it.
+
+## Highlights
+
+- Full detection-to-response cycle, backed by [Certified CyberDefender L2](https://www.credly.com/badges/a04d97e6-995b-4099-8387-873ef9abe7ec) and a [capstone CTF win](https://danielmala.co/awards/sec504-coin.jpg) at [SANS SEC504](https://www.sans.org/cyber-security-courses/hacker-techniques-incident-handling) (Incident Handling)
+- IP network delivered across 4 countries: Qatar, Brazil, Denmark, Norway
+- Security infrastructure featured in a [Fortinet Customer Story](https://www.fortinet.com/customers/ascendi), plus [Fortinet CTF wins](https://danielmala.co/en/about/#h-awards) in 2024, 2025 and 2026
+- DevSecOps practice on public projects — zero-trust CI/CD and supply-chain security — running on an edge-computing (Cloudflare Workers) backend — [danielmala.co](https://danielmala.co)
 
 ## What I do
 
-- Design, deploy and operate the security architecture for critical
-  infrastructure: NGFW, AV/EDR, vulnerability analysis, SIEM, IAM, WAF,
-  secure email gateway.
-- Run the full detection cycle end to end — from designing the control to
-  analyzing the event and closing the incident through ITSM.
+- Design, deploy and operate security architecture across on-prem and
+  cloud infrastructure: NGFW, AV/EDR, VA, SIEM, IAM, WAF, SEG.
+- Run the full detection cycle end to end — control design, detection
+  engineering, incident investigation and response, closing out through
+  ITSM.
+- Apply security frameworks (MITRE ATT&CK, CIS Controls, ISO 27001, OWASP
+  Top 10) to structure decisions and prioritize controls, not just to
+  reference them.
+- Support internal audits against ISO 27001 and CIS/CISA benchmarks, and,
+  more recently, NIS2.
 - Bring an offensive perspective into defensive work — thinking like an
   attacker shapes how I design and tune detections.
 - Build for redundancy, document for whoever comes next, test in staging
@@ -27,10 +40,8 @@ _Network_
 ![Palo Alto Networks](https://img.shields.io/badge/Palo%20Alto%20Networks-2563eb?style=flat-square&logo=paloaltonetworks&logoColor=white&labelColor=0a0d11)
 ![Cloudflare](https://img.shields.io/badge/Cloudflare-15803d?style=flat-square&logo=cloudflare&logoColor=white&labelColor=0a0d11)
 
-_Endpoint & detection_
+_Detection & analytics_
 
-![AV](https://img.shields.io/badge/AV-2563eb?style=flat-square&labelColor=0a0d11)
-![EDR](https://img.shields.io/badge/EDR-15803d?style=flat-square&labelColor=0a0d11)
 ![Splunk](https://img.shields.io/badge/Splunk-b45309?style=flat-square&logo=splunk&logoColor=white&labelColor=0a0d11)
 ![Elastic](https://img.shields.io/badge/Elastic-2563eb?style=flat-square&logo=elastic&logoColor=white&labelColor=0a0d11)
 
@@ -86,8 +97,8 @@ genuinely needs it, and tools that call home (a compromised-password
 check via k-anonymity, a header self-scan) labeled as such instead of
 pretending to run entirely in the browser. The one piece that does need
 a server — a honeypot logging automated scanning against decoy
-endpoints — lives isolated in a Cloudflare Worker, and can't store an IP
-even if I wanted it to: only country, ASN, and path, keyed by a
+endpoints — lives in an isolated Cloudflare Worker, and is designed not
+to store IP addresses: only country, ASN, and path, keyed by a
 rotating salted hash. None of this is asserted on faith — the site's
 *Evidence* page deep-links the commits, workflows, and a live header
 scan behind each claim.
@@ -98,8 +109,6 @@ scan behind each claim.
 
 <div align="center">
 
-<img src="./assets/streak.svg" alt="Daniel Malaco's GitHub contribution streak" />
-
 <img src="./assets/trophies.svg" alt="Daniel Malaco's GitHub profile trophies" />
 
 <img src="./assets/stars-given.svg" alt="Number of repositories Daniel Malaco has starred on GitHub" />
@@ -109,7 +118,7 @@ scan behind each claim.
 <details>
 <summary>How these stats are generated</summary>
 
-Banner, contribution streak, trophies and the starred-repos count are
+Banner, trophies and the starred-repos count are
 generated weekly by
 [`.github/workflows/update-profile-widgets.yml`](.github/workflows/update-profile-widgets.yml)
 and committed to `assets/` — no live third-party endpoint is queried when
@@ -130,9 +139,8 @@ move the number would be the opposite of what this page is meant to show.
 </details>
 
 Public activity here is a fraction of the work — most of it is internal
-infrastructure, not public code. Formal certifications aren't tracked
-here either — those live on [Credly](https://www.credly.com/users/daniel-malaco/badges),
-linked again under Contact.
+infrastructure, not public code. The full certification record lives on
+[Credly](https://www.credly.com/users/daniel-malaco/badges).
 
 ## Contact
 
