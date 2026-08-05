@@ -8,7 +8,7 @@ demonstrates the practices behind it.
 ## Highlights
 
 - Security architecture for critical road infrastructure — perimeter, endpoint, identity and cloud security
-- Full detection-to-response cycle — control design, detection engineering, investigation, incident response — backed by SANS SEC504 (Incident Handling)
+- Full detection-to-response cycle — control design, detection engineering, investigation, incident response — backed by [Certified CyberDefender L2](https://www.credly.com/badges/a04d97e6-995b-4099-8387-873ef9abe7ec) and a [capstone CTF win](https://danielmala.co/awards/sec504-coin.jpg) at [SANS SEC504](https://www.sans.org/cyber-security-courses/hacker-techniques-incident-handling) (Incident Handling)
 - IP network delivered across 4 countries: Qatar, Brazil, Denmark, Norway
 - Security infrastructure featured in a [Fortinet Customer Story](https://www.fortinet.com/customers/ascendi)
 - DevSecOps practice on public projects — zero-trust CI/CD and supply-chain security — running on an edge-computing (Cloudflare Workers) backend — [danielmala.co](https://danielmala.co)
