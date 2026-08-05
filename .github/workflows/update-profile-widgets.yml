@@ -240,15 +240,63 @@ jobs:
         with:
           deno-version: v2.x
 
+      - name: Corrigir nós nulos em repositories.nodes (upstream)
+        working-directory: .trophy-src
+        # Causa raiz da falha real (diagnosticada 2026-08-03 instrumentando
+        # temporariamente este checkout): "TypeError: Cannot read properties
+        # of null (reading 'stargazers')" em src/user_info.ts, porque a
+        # GraphQL API devolve `null` em repositories.nodes para um repositório
+        # que já não resolve para o token (privado/transferido/apagado
+        # entretanto), mesmo continuando contado em totalCount. Não é rate
+        # limit nem token inválido — por isso o retry sozinho nunca ia
+        # resolver isto. O construtor de UserInfo itera nodes três vezes
+        # (totalStargazers, languages, earliestRepoDate) sem filtrar nulls;
+        # filtrar aqui, no checkout já fixo por SHA, em vez de esperar por
+        # um fix upstream.
+        run: |
+          python3 - <<'PYEOF'
+          p = "src/user_info.ts"
+          s = open(p, encoding="utf-8").read()
+          old = "  ) {\n    const totalCommits ="
+          new = (
+              "  ) {\n"
+              "    userRepository.repositories.nodes = "
+              "userRepository.repositories.nodes.filter((node) => node != null);\n"
+              "    const totalCommits ="
+          )
+          if old not in s:
+              raise SystemExit("padrão não encontrado em user_info.ts — upstream mudou, rever o patch")
+          open(p, "w", encoding="utf-8").write(s.replace(old, new, 1))
+          print("patched user_info.ts")
+          PYEOF
+
       - name: Gerar cartão de troféus
         working-directory: .trophy-src
+        # 3 tentativas com backoff (5s, 15s): mantido como rede de segurança
+        # para hiccups genuinamente transitórios da API do GitHub. A causa
+        # das falhas de 2026-07-31/2026-08-03 (ver step anterior) era
+        # determinística — um node null em repositories.nodes — por isso o
+        # retry sozinho nunca as teria resolvido; o fix real é o filtro no
+        # step "Corrigir nós nulos" acima.
         run: |
-          deno run \
+          attempt=1
+          max_attempts=3
+          delay=5
+          until deno run \
             --allow-net=api.github.com \
             --allow-env=GITHUB_TOKEN1,GITHUB_TOKEN2,ENV_TYPE,GITHUB_API \
             --allow-read=. \
             --allow-write=../assets \
-            ./render_svg.ts blindtk ../assets/trophies.svg matrix
+            ./render_svg.ts blindtk ../assets/trophies.svg matrix; do
+            if [ "$attempt" -ge "$max_attempts" ]; then
+              echo "::error::Gerador de troféus falhou após ${max_attempts} tentativas"
+              exit 1
+            fi
+            echo "Tentativa ${attempt}/${max_attempts} falhou, a repetir em ${delay}s..."
+            sleep "$delay"
+            attempt=$((attempt + 1))
+            delay=$((delay * 3))
+          done
         env:
           # Nome exato exigido pelo GithubApiService do render_svg.ts
           # oficial (ver env-example no repo) — não é GITHUB_TOKEN nem
