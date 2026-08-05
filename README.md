@@ -1,18 +1,16 @@
 <img src="./assets/banner.svg" alt="Banner: Daniel Malaco, Information Security Engineer, Porto, Portugal" />
 
 Information Security Engineer designing and operating the security
-architecture for critical infrastructure. Came up through networks before
-moving into security. Most of the work is private — what's here
+architecture for critical road infrastructure. Came up through networks
+before moving into security. Most of the work is private — what's here
 demonstrates the practices behind it.
 
 ## Highlights
 
-- Security architecture for critical road infrastructure — perimeter, endpoint, identity and cloud security
-- Full detection-to-response cycle — control design, detection engineering, investigation, incident response — backed by [Certified CyberDefender L2](https://www.credly.com/badges/a04d97e6-995b-4099-8387-873ef9abe7ec) and a [capstone CTF win](https://danielmala.co/awards/sec504-coin.jpg) at [SANS SEC504](https://www.sans.org/cyber-security-courses/hacker-techniques-incident-handling) (Incident Handling)
+- Full detection-to-response cycle, backed by [Certified CyberDefender L2](https://www.credly.com/badges/a04d97e6-995b-4099-8387-873ef9abe7ec) and a [capstone CTF win](https://danielmala.co/awards/sec504-coin.jpg) at [SANS SEC504](https://www.sans.org/cyber-security-courses/hacker-techniques-incident-handling) (Incident Handling)
 - IP network delivered across 4 countries: Qatar, Brazil, Denmark, Norway
 - Security infrastructure featured in a [Fortinet Customer Story](https://www.fortinet.com/customers/ascendi)
 - DevSecOps practice on public projects — zero-trust CI/CD and supply-chain security — running on an edge-computing (Cloudflare Workers) backend — [danielmala.co](https://danielmala.co)
-- Frameworks applied day to day, not just referenced: MITRE ATT&CK, CIS Controls, OWASP Top 10
 
 ## What I do
 
@@ -143,9 +141,8 @@ move the number would be the opposite of what this page is meant to show.
 </details>
 
 Public activity here is a fraction of the work — most of it is internal
-infrastructure, not public code. Formal certifications aren't tracked
-here either — those live on [Credly](https://www.credly.com/users/daniel-malaco/badges),
-linked again under Contact.
+infrastructure, not public code. The full certification record lives on
+[Credly](https://www.credly.com/users/daniel-malaco/badges).
 
 ## Contact
 
