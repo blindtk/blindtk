@@ -24,6 +24,8 @@ demonstrates the practices behind it.
 - Apply security frameworks (MITRE ATT&CK, CIS Controls, ISO 27001, OWASP
   Top 10) to structure decisions and prioritize controls, not just to
   reference them.
+- Support internal audits against ISO 27001 and CIS/CISA benchmarks, and,
+  more recently, NIS2.
 - Bring an offensive perspective into defensive work — thinking like an
   attacker shapes how I design and tune detections.
 - Build for redundancy, document for whoever comes next, test in staging
