@@ -11,7 +11,7 @@ demonstrates the practices behind it.
 - Full detection-to-response cycle — control design, detection engineering, investigation, incident response — backed by SANS SEC504 (Incident Handling)
 - IP network delivered across 4 countries: Qatar, Brazil, Denmark, Norway
 - Security infrastructure work featured in a [Fortinet Customer Story](https://www.fortinet.com/customers/ascendi)
-- Zero-trust CI/CD and supply-chain security on public projects — [danielmala.co](https://danielmala.co)
+- DevSecOps practice on public projects — zero-trust CI/CD, supply-chain security, and an edge-computing (Cloudflare Workers) backend — [danielmala.co](https://danielmala.co)
 - Frameworks applied day to day, not just referenced: MITRE ATT&CK, CIS Controls, OWASP Top 10
 
 ## What I do
