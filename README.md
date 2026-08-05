@@ -101,8 +101,8 @@ genuinely needs it, and tools that call home (a compromised-password
 check via k-anonymity, a header self-scan) labeled as such instead of
 pretending to run entirely in the browser. The one piece that does need
 a server — a honeypot logging automated scanning against decoy
-endpoints — lives isolated in a Cloudflare Worker, and can't store an IP
-even if I wanted it to: only country, ASN, and path, keyed by a
+endpoints — lives in an isolated Cloudflare Worker, and is designed not
+to store IP addresses: only country, ASN, and path, keyed by a
 rotating salted hash. None of this is asserted on faith — the site's
 *Evidence* page deep-links the commits, workflows, and a live header
 scan behind each claim.
