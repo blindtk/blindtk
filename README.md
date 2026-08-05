@@ -9,7 +9,7 @@ demonstrates the practices behind it.
 
 - Full detection-to-response cycle, backed by [Certified CyberDefender L2](https://www.credly.com/badges/a04d97e6-995b-4099-8387-873ef9abe7ec) and a [capstone CTF win](https://danielmala.co/awards/sec504-coin.jpg) at [SANS SEC504](https://www.sans.org/cyber-security-courses/hacker-techniques-incident-handling) (Incident Handling)
 - IP network delivered across 4 countries: Qatar, Brazil, Denmark, Norway
-- Security infrastructure featured in a [Fortinet Customer Story](https://www.fortinet.com/customers/ascendi)
+- Security infrastructure featured in a [Fortinet Customer Story](https://www.fortinet.com/customers/ascendi), plus [Fortinet CTF wins](https://danielmala.co/en/about/#h-awards) in 2024, 2025 and 2026
 - DevSecOps practice on public projects — zero-trust CI/CD and supply-chain security — running on an edge-computing (Cloudflare Workers) backend — [danielmala.co](https://danielmala.co)
 
 ## What I do
