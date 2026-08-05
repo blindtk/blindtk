@@ -40,10 +40,8 @@ _Network_
 ![Palo Alto Networks](https://img.shields.io/badge/Palo%20Alto%20Networks-2563eb?style=flat-square&logo=paloaltonetworks&logoColor=white&labelColor=0a0d11)
 ![Cloudflare](https://img.shields.io/badge/Cloudflare-15803d?style=flat-square&logo=cloudflare&logoColor=white&labelColor=0a0d11)
 
-_Endpoint & detection_
+_Detection & analytics_
 
-![AV](https://img.shields.io/badge/AV-2563eb?style=flat-square&labelColor=0a0d11)
-![EDR](https://img.shields.io/badge/EDR-15803d?style=flat-square&labelColor=0a0d11)
 ![Splunk](https://img.shields.io/badge/Splunk-b45309?style=flat-square&logo=splunk&logoColor=white&labelColor=0a0d11)
 ![Elastic](https://img.shields.io/badge/Elastic-2563eb?style=flat-square&logo=elastic&logoColor=white&labelColor=0a0d11)
 
