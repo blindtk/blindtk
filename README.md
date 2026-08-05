@@ -4,13 +4,26 @@ Information Security Engineer designing and operating the security
 architecture for critical infrastructure. Came up through networks before
 moving into security.
 
+## Highlights
+
+- Security architecture for critical infrastructure — NGFW, EDR, SIEM, IAM, WAF, cloud (AWS/Azure)
+- Full detection-to-response cycle — control design, detection engineering, investigation, incident response — backed by SANS SEC504 (Incident Handling)
+- IP network & security infrastructure delivered across 4 countries: Qatar, Brazil, Denmark, Norway
+- Security infrastructure work featured in a [Fortinet Customer Story](https://www.fortinet.com/customers/ascendi)
+- Zero-trust CI/CD and supply-chain security on public projects — [danielmala.co](https://danielmala.co)
+- Frameworks applied day to day, not just referenced: MITRE ATT&CK, CIS Controls, OWASP Top 10
+
 ## What I do
 
-- Design, deploy and operate the security architecture for critical
-  infrastructure: NGFW, AV/EDR, vulnerability analysis, SIEM, IAM, WAF,
-  secure email gateway.
-- Run the full detection cycle end to end — from designing the control to
-  analyzing the event and closing the incident through ITSM.
+- Design, deploy and operate security architecture across on-prem and
+  cloud (AWS, Azure) infrastructure: NGFW, AV/EDR, vulnerability analysis,
+  SIEM, IAM, WAF, secure email gateway.
+- Run the full detection cycle end to end — control design, detection
+  engineering, incident investigation and response, closing out through
+  ITSM.
+- Apply security frameworks (MITRE ATT&CK, CIS Controls, ISO 27001, OWASP
+  Top 10) to structure decisions and prioritize controls, not just to
+  reference them.
 - Bring an offensive perspective into defensive work — thinking like an
   attacker shapes how I design and tune detections.
 - Build for redundancy, document for whoever comes next, test in staging
