@@ -113,8 +113,6 @@ scan behind each claim.
 
 <div align="center">
 
-<img src="./assets/streak.svg" alt="Daniel Malaco's GitHub contribution streak" />
-
 <img src="./assets/trophies.svg" alt="Daniel Malaco's GitHub profile trophies" />
 
 <img src="./assets/stars-given.svg" alt="Number of repositories Daniel Malaco has starred on GitHub" />
@@ -124,7 +122,7 @@ scan behind each claim.
 <details>
 <summary>How these stats are generated</summary>
 
-Banner, contribution streak, trophies and the starred-repos count are
+Banner, trophies and the starred-repos count are
 generated weekly by
 [`.github/workflows/update-profile-widgets.yml`](.github/workflows/update-profile-widgets.yml)
 and committed to `assets/` — no live third-party endpoint is queried when
