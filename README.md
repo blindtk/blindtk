@@ -7,7 +7,7 @@ demonstrates the practices behind it.
 
 ## Highlights
 
-- Security architecture for NIS2-regulated critical road infrastructure, on-premises and in the cloud
+- Security architecture for critical road infrastructure, on-premises and in the cloud
 - Full detection-to-response cycle — control design, detection engineering, investigation, incident response — backed by SANS SEC504 (Incident Handling)
 - IP network delivered across 4 countries: Qatar, Brazil, Denmark, Norway
 - Security infrastructure work featured in a [Fortinet Customer Story](https://www.fortinet.com/customers/ascendi)
