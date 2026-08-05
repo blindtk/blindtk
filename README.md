@@ -2,11 +2,12 @@
 
 Information Security Engineer designing and operating the security
 architecture for critical infrastructure. Came up through networks before
-moving into security.
+moving into security. Most of the work is private — what's here
+demonstrates the practices behind it.
 
 ## Highlights
 
-- Security architecture for critical infrastructure — NGFW, EDR, SIEM, IAM, WAF, cloud (AWS/Azure)
+- Security architecture for NIS2-regulated critical road infrastructure, on-premises and in the cloud (AWS/Azure)
 - Full detection-to-response cycle — control design, detection engineering, investigation, incident response — backed by SANS SEC504 (Incident Handling)
 - IP network & security infrastructure delivered across 4 countries: Qatar, Brazil, Denmark, Norway
 - Security infrastructure work featured in a [Fortinet Customer Story](https://www.fortinet.com/customers/ascendi)
