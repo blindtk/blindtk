@@ -17,8 +17,7 @@ demonstrates the practices behind it.
 ## What I do
 
 - Design, deploy and operate security architecture across on-prem and
-  cloud (AWS, Azure) infrastructure: NGFW, AV/EDR, vulnerability analysis,
-  SIEM, IAM, WAF, secure email gateway.
+  cloud infrastructure: NGFW, AV/EDR, VA, SIEM, IAM, WAF, SEG.
 - Run the full detection cycle end to end — control design, detection
   engineering, incident investigation and response, closing out through
   ITSM.
