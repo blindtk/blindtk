@@ -68,6 +68,7 @@ _Cloud_
 
 ![AWS](https://img.shields.io/badge/AWS-2563eb?style=flat-square&labelColor=0a0d11)
 ![Azure](https://img.shields.io/badge/Azure-15803d?style=flat-square&labelColor=0a0d11)
+![OCI](https://img.shields.io/badge/OCI-b45309?style=flat-square&labelColor=0a0d11)
 
 **Containers & DevOps**
 
