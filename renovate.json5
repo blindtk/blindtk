@@ -1,41 +1,42 @@
-Ly8gU3Vic3RpdHVpIG8gZGVwZW5kYWJvdC55bWwgKGdpdGh1Yi1hY3Rpb25zKSBwYXJhIHBhcnRp
-bGhhciBtZWNhbmlzbW8gZGUKLy8gbWFudXRlbsOnw6NvIGNvbSBvIGJsaW5kdGsvcGVyc29uYWwt
-c2l0ZTogbyBSZW5vdmF0ZSBtYW50w6ltIG9zIGRpZ2VzdHMgU0hBCi8vIGRhcyBhY3Rpb25zIGF0
-dWFsaXphZG9zIChoZWxwZXJzOnBpbkdpdEh1YkFjdGlvbnNEaWdlc3RzKSwgZW0gdmV6IGRlIGR1
-YXMKLy8gZmVycmFtZW50YXMgYSBmYXplcmVtIG8gbWVzbW8gdHJhYmFsaG8gZGUgZm9ybWEgZGlm
-ZXJlbnRlLiBSZXF1ZXIgYSBhcHAKLy8gIlJlbm92YXRlIiAoTWVuZCkgaW5zdGFsYWRhIG5lc3Rl
-IHJlcG9zaXTDs3JpbzoKLy8gICBodHRwczovL2dpdGh1Yi5jb20vYXBwcy9yZW5vdmF0ZQovLwov
-LyBQUiAjMyAoYSBQUiBkZSBvbmJvYXJkaW5nIGRvIFJlbm92YXRlKSBmb2kgZmVjaGFkYSBzZW0g
-bWVyZ2UgZW0gMjAyNi0wNy0zMAovLyBlIGVzdGUgZmljaGVpcm8gZm9pIGFkaWNpb25hZG8gZGly
-ZXRhbWVudGUgbmEgbWFpbiBhIHNlZ3Vpci4gTyBNZW5kCi8vIGRhc2hib2FyZCBzw7MgbWFyY2Eg
-dW0gcmVwbyBjb21vICJBY3RpdmF0ZWQiIChQUnMgYWdlbmRhZGFzICsgaXNzdWUKLy8gRGVwZW5k
-ZW5jeSBEYXNoYm9hcmQpIHF1YW5kbyBhIFBSIGRlIG9uYm9hcmRpbmcgw6kgZmVpdGEgbWVyZ2Ug
-LSBzZW0gaXNzbywKLy8gZmljYSBzw7MgIk9uYm9hcmRlZCIgKG1vZG8gaW50ZXJhdGl2byBubyBk
-YXNoYm9hcmQpLCBpbmRlcGVuZGVudGVtZW50ZSBkZXN0ZQovLyBmaWNoZWlybyBqw6EgZXhpc3Rp
-ci4gUFIgIzMgZm9pIHJlYWJlcnRhIGUgZmVpdGEgbWVyZ2UgcGFyYSBjcnV6YXIgZXNzZQovLyBj
-aGVja3BvaW50LCBzZW0gcmVpbnRyb2R1emlyIG8gcmVub3ZhdGUuanNvbiBnZW7DqXJpY28gcXVl
-IGEgb25ib2FyZGluZwovLyBvcmlnaW5hbCBwcm9wdW5oYSAtIGVzdGUgcmVub3ZhdGUuanNvbjUg
-Y29udGludWEgYSBzZXIgYSBjb25maWd1cmHDp8OjbwovLyBhdXRvcml0YXRpdmEuCnsKICAkc2No
-ZW1hOiAnaHR0cHM6Ly9kb2NzLnJlbm92YXRlYm90LmNvbS9yZW5vdmF0ZS1zY2hlbWEuanNvbics
-CiAgZXh0ZW5kczogWwogICAgJ2NvbmZpZzpyZWNvbW1lbmRlZCcsCiAgICAvLyBQaW5hIGFzIEdp
-dEh1YiBBY3Rpb25zIHBvciBkaWdlc3QgU0hBICh1c2VzOiBvd25lci9yZXBvQDxzaGE+ICMgdlgu
-WS5aKQogICAgLy8gZSBtYW50w6ltIG9zIGRpZ2VzdHMgYXR1YWxpemFkb3MgLSBwcm90ZcOnw6Nv
-IGNvbnRyYSB0YWdzIG1vdmlkYXMuIMOJIGEKICAgIC8vIHJhesOjbyBkZSBleGlzdGlyIGRlc3Rl
-IGZpY2hlaXJvOiBlc3RlIHJlcG8gbsOjbyB0ZW0gcGFja2FnZS5qc29uIG5lbQogICAgLy8gbG9j
-a2ZpbGUsIHPDsyB3b3JrZmxvd3MuCiAgICAnaGVscGVyczpwaW5HaXRIdWJBY3Rpb25zRGlnZXN0
-cycsCiAgXSwKICB0aW1lem9uZTogJ0V1cm9wZS9MaXNib24nLAogIHNjaGVkdWxlOiBbJ2JlZm9y
-ZSA4YW0gb24gbW9uZGF5J10sCiAgLy8gRXNwZXJhIDMgZGlhcyBhbnRlcyBkZSBwcm9wb3IgdW1h
-IHZlcnPDo28gbm92YSAtIGphbmVsYSBkZSBzZWd1cmFuw6dhCiAgLy8gY29udHJhIHJlbGVhc2Vz
-IGNvbXByb21ldGlkb3MgcHVibGljYWRvcyBlIHJldGlyYWRvcyBwb3VjbyBkZXBvaXMKICAvLyAo
-bWVzbW8gcmFjaW9jw61uaW8gZG8gcGVyc29uYWwtc2l0ZSwgYXBsaWNhZG8gYW8gw7puaWNvIGVj
-b3NzaXN0ZW1hIHF1ZQogIC8vIGVzdGUgcmVwbyB0ZW0sIGdpdGh1Yi1hY3Rpb25zKS4KICBtaW5p
-bXVtUmVsZWFzZUFnZTogJzMgZGF5cycsCiAgbGFiZWxzOiBbJ2RlcGVuZGVuY2llcycsICdnaXRo
-dWItYWN0aW9ucyddLAogIC8vIHppem1vciBwYXNzb3UgYSBpbnN0YWxhci1zZSBwb3IgcmVxdWly
-ZW1lbnRzLnR4dCBjb20gLS1oYXNoIChhY2hhZG8gZG8KICAvLyBTY29yZWNhcmQsIFBpbm5lZC1E
-ZXBlbmRlbmNpZXMpIC0gbyBtYW5hZ2VyIG5hdGl2byBwaXBfcmVxdWlyZW1lbnRzIGRvCiAgLy8g
-UmVub3ZhdGUgc29iZSBhIHZlcnPDo28gRSByZWNhbGN1bGEgb3MgaGFzaGVzIG5hIG1lc21hIFBS
-LiBFeHBsw61jaXRvIGVtCiAgLy8gdmV6IGRlIGNvbmZpYXIgbm8gZmlsZU1hdGNoIHBvciBvbWlz
-c8OjbywgcGFyYSBuw6NvIGRlcGVuZGVyIGRlIG8gbm9tZQogIC8vIGRvIGZpY2hlaXJvIGJhdGVy
-IGNlcnRvIGNvbSBvIHBhZHLDo28gZ2Vuw6lyaWNvLgogIHBpcF9yZXF1aXJlbWVudHM6IHsKICAg
-IG1hbmFnZXJGaWxlUGF0dGVybnM6IFsnL15cXC5naXRodWIveml6bW9yLXJlcXVpcmVtZW50c1xc
-LnR4dCQvJ10sCiAgfSwKfQo=
+// Substitui o dependabot.yml (github-actions) para partilhar mecanismo de
+// manutenção com o blindtk/personal-site: o Renovate mantém os digests SHA
+// das actions atualizados (helpers:pinGitHubActionsDigests), em vez de duas
+// ferramentas a fazerem o mesmo trabalho de forma diferente. Requer a app
+// "Renovate" (Mend) instalada neste repositório:
+//   https://github.com/apps/renovate
+//
+// PR #3 (a PR de onboarding do Renovate) foi fechada sem merge em 2026-07-30
+// e este ficheiro foi adicionado diretamente na main a seguir. O Mend
+// dashboard só marca um repo como "Activated" (PRs agendadas + issue
+// Dependency Dashboard) quando a PR de onboarding é feita merge - sem isso,
+// fica só "Onboarded" (modo interativo no dashboard), independentemente deste
+// ficheiro já existir. PR #21 fez merge para cruzar esse checkpoint, sem
+// reintroduzir o renovate.json genérico que a onboarding original propunha -
+// este renovate.json5 continua a ser a configuração autoritativa.
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:recommended',
+    // Pina as GitHub Actions por digest SHA (uses: owner/repo@<sha> # vX.Y.Z)
+    // e mantém os digests atualizados — proteção contra tags movidas. É a
+    // razão de existir deste ficheiro: este repo não tem package.json nem
+    // lockfile, só workflows.
+    'helpers:pinGitHubActionDigests',
+  ],
+  timezone: 'Europe/Lisbon',
+  schedule: ['before 8am on monday'],
+  // Espera 3 dias antes de propor uma versão nova — janela de segurança
+  // contra releases comprometidos publicados e retirados pouco depois
+  // (mesmo raciocínio do personal-site, aplicado ao único ecossistema que
+  // este repo tem, github-actions).
+  minimumReleaseAge: '3 days',
+  labels: ['dependencies', 'github-actions'],
+  // zizmor passou a instalar-se por requirements.txt com --hash (achado do
+  // Scorecard, Pinned-Dependencies) — o manager nativo pip_requirements do
+  // Renovate sobe a versão E recalcula os hashes na mesma PR. Explícito em
+  // vez de confiar no fileMatch por omissão, para não depender de o nome
+  // do ficheiro bater certo com o padrão genérico.
+  pip_requirements: {
+    managerFilePatterns: ['/^\\.github/zizmor-requirements\\.txt$/'],
+  },
+}
