@@ -1,18 +1,18 @@
-# Hashes de todos os wheels + sdist publicados para zizmor==1.28.0 no PyPI
-# (https://pypi.org/pypi/zizmor/1.28.0/json). --require-hashes obriga o pip
+# Hashes de todos os wheels + sdist publicados para zizmor==1.30.0 no PyPI
+# (https://pypi.org/pypi/zizmor/1.30.0/json). --require-hashes obriga o pip
 # a verificar o download contra esta lista antes de instalar — sem isto, o
-# pin de versão (==1.28.0) não impede servir um artefacto diferente com o
+# pin de versão (==1.30.0) não impede servir um artefacto diferente com o
 # mesmo número de versão. O Renovate mantém isto (managers.pip_requirements
 # em renovate.json5): sobe a versão e recalcula os hashes na mesma PR.
-zizmor==1.28.0 \
-    --hash=sha256:149dba59a8bd2897960ee54c40ae8b5801a71293bad71c8d2913c74ab66a294c \
-    --hash=sha256:0949f57a6d20deeb9c509705afce8de233c166475e25be305985a1fe553c6e0d \
-    --hash=sha256:9819f91f0ef486e4af98a6aacfed23c6b4067fabcecb88d49231228a3d43f821 \
-    --hash=sha256:354e6cb98a15a88593a6f7ac6236b092b83a2aad5c4768ee750f9b3262f668d9 \
-    --hash=sha256:ae2cab67ce713e760e0d1b61ad749d374693ea2b310337aab11cd446748267f3 \
-    --hash=sha256:7b00018cf2cc948c3b3e010c1a1f30fdc001f0d062640469f17e0ef006e74eb7 \
-    --hash=sha256:6897f02b0d02fd709f5ebc13cd37d97ad464219e0ba86a03f6d86f7777b7b102 \
-    --hash=sha256:ef69d198dcf6835c9b6eea8673cbc5c36f10b3f1b98b51d28266b7e01c3704d4 \
-    --hash=sha256:833c360ba5a9c74ca45007b8c79939826fca0c5ed65144fa08f63a7009cef096 \
-    --hash=sha256:c93b30d211b0b0c38905a8803cc2653fff37de03eb77105302a02f709773bd4a \
-    --hash=sha256:6d5a300b80bf4c12e9cbe78ffd3874ec3f94b65bea78c994ec18157e2846ece0
+zizmor==1.30.0 \
+    --hash=sha256:51c96204572b9f96b940806a371a9c57c8cff30cf93d3bd73c2febe483f942df \
+    --hash=sha256:e4193537785dd07177227e4695871ffae1d7fe3f6043c217498445e71b477bc1 \
+    --hash=sha256:7569a58319fb270c14a64663a6565929035f26f6f6d13059314f796e988129eb \
+    --hash=sha256:0e69a86290dff4c41b51c381a27029b5dc2b748c0510a9a333b18f862ea1bc68 \
+    --hash=sha256:9c08a7c34b33ed6f9a3a3d28fcf8c64e3e078c53c51bc9ce05c32ec3ba7feae9 \
+    --hash=sha256:baa02978518248bf9f011e6ceca7b7c5efb5b893810cd4954e01785e1b68f959 \
+    --hash=sha256:0148b61f6315ad363ae748f838e8ed81e1cfb3ade6bbe480e7516e4fba630b82 \
+    --hash=sha256:1f15ed62ff34ad7875427384b03a2f72995d9ab8ddcb50dc141b25763de3aaa2 \
+    --hash=sha256:39f15155db3e4af9bb5cf125a236c67fd84ddd3174f60b4111b27c691b337e00 \
+    --hash=sha256:ca321b5b1cb85d08ac0c3c86275bfd5a6b5564c176437e3b41e10bd1e4463296 \
+    --hash=sha256:9a17ac3bb043afbbd9d3c8b6f309fa5b319c6a32e3259fbaf050f6fcd3d0a9cd
