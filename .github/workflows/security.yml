@@ -1,5 +1,26 @@
-name: Lint GitHub Actions workflows
+name: security
 
+# Controlos de segurança em cada push/PR a main — mesmo nome e mesma forma
+# que o security.yml do personal-site e do honeypot-vps-infra. Junta o que
+# até 2026-09-25 eram dois ficheiros (security.yml e security.yml); os
+# IDs de job `gitleaks` e `zizmor` ficaram iguais porque são o nome do
+# check — e o `zizmor` é status check obrigatório no ruleset de `main`.
+# Convenção de nomes: knowledge-base/notes/nomenclatura-de-workflows.md.
+#
+# ── gitleaks ──
+# Segredos committados por engano (tokens, chaves privadas). Superfície real
+# e pequena — não há package.json nem lockfiles aqui, mas alguém editando o
+# README ou um workflow à mão pode colar um token sem querer, e o
+# GITHUB_TOKEN passa por vários steps de update-profile-widgets.yml.
+# fetch-depth: 0 para apanhar um segredo introduzido em qualquer commit do
+# push/PR, não só no mais recente. Conta pessoal: GITLEAKS_LICENSE não é
+# necessária. Custo: ~10-20s por execução — corre em cada push/PR porque é
+# o único controlo de segredos que este repo tem (sem GHAS num repo
+# privado seria a mesma lógica; aqui é público, mas secret scanning nativo
+# do GitHub é uma decisão de definições do repo — Fase 6 — não substitui
+# isto enquanto não estiver confirmado ligado).
+#
+# ── zizmor ──
 # Analisa .github/workflows com zizmor (https://github.com/zizmorcore/zizmor):
 # deteta permissoes excessivas, actions nao fixadas e template-injection via
 # ${{ }} em steps `run:` — os riscos reais de um workflow com contents:write
@@ -28,10 +49,23 @@ on:
     - cron: "30 6 * * 1" # semanal, a seguir ao update-profile-widgets.yml
   workflow_dispatch:
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   zizmor:
     runs-on: ubuntu-latest
     permissions:
@@ -57,3 +91,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         # --min-severity medium: mesmo gate do personal-site (security.yml).
         run: zizmor --min-severity medium .github/workflows/
+      - name: Verificar nomes dos workflows
+        # Mesmo script, byte a byte, em todos os repos da conta — ver o
+        # cabeçalho dele.
+        run: bash .github/scripts/check-workflow-names.sh

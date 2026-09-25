@@ -1,10 +1,10 @@
 # Security Policy
 
 This repository is Daniel Malaco's GitHub profile: a `README.md`, five
-SVGs generated into `assets/`, and four workflows
+SVGs generated into `assets/`, and three workflows
 (`.github/workflows/update-profile-widgets.yml`,
-`.github/workflows/lint-actions.yml`, `.github/workflows/gitleaks.yml`,
-`.github/workflows/scorecard.yml`) that keep it updated and audited. There
+`.github/workflows/security.yml`,
+`.github/workflows/security-scorecard.yml`) that keep it updated and audited. There
 is no application or user data here — the relevant surface is the CI/CD
 chain itself: `update-profile-widgets.yml` runs with `permissions:
 contents: write` in the job that commits, and its `generate` job runs

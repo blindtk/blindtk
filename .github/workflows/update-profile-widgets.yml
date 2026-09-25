@@ -1,4 +1,4 @@
-name: Update profile widgets
+name: update-profile-widgets
 
 # Coloca este ficheiro em .github/workflows/update-profile-widgets.yml
 # dentro de blindtk/blindtk.
@@ -220,7 +220,7 @@ jobs:
         id: starred
         env:
           # o token passa por env, nunca interpolado dentro do run: — evita
-          # injeção de template (mesmo padrão do headers.yml do personal-site,
+          # injeção de template (mesmo padrão do verify-headers.yml do personal-site,
           # auditado pelo zizmor)
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
