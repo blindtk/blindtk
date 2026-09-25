@@ -39,6 +39,8 @@
   pip_requirements: {
     managerFilePatterns: ['/^\\.github/zizmor-requirements\\.txt$/'],
   },
+  // Off by default: follows .pre-commit-config.yaml's `rev:` (gitleaks).
+  'pre-commit': { enabled: true },
   customManagers: [
     {
       // actionlint vem de um URL de release com versão E sha256 literais;
