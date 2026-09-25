@@ -1,0 +1,122 @@
+name: security
+
+# Controlos de segurança em cada push/PR a main — mesmo nome e mesma forma
+# que o security.yml do personal-site e do honeypot-vps-infra. Junta o que
+# até 2026-09-25 eram dois ficheiros (security.yml e security.yml); os
+# IDs de job `gitleaks` e `zizmor` ficaram iguais porque são o nome do
+# check — e o `zizmor` é status check obrigatório no ruleset de `main`.
+# Convenção de nomes: knowledge-base/notes/nomenclatura-de-workflows.md.
+#
+# ── gitleaks ──
+# Segredos committados por engano (tokens, chaves privadas). Superfície real
+# e pequena — não há package.json nem lockfiles aqui, mas alguém editando o
+# README ou um workflow à mão pode colar um token sem querer, e o
+# GITHUB_TOKEN passa por vários steps de update-profile-widgets.yml.
+# fetch-depth: 0 para apanhar um segredo introduzido em qualquer commit do
+# push/PR, não só no mais recente. Conta pessoal: GITLEAKS_LICENSE não é
+# necessária. Custo: ~10-20s por execução — corre em cada push/PR porque é
+# o único controlo de segredos que este repo tem (sem GHAS num repo
+# privado seria a mesma lógica; aqui é público, mas secret scanning nativo
+# do GitHub é uma decisão de definições do repo — Fase 6 — não substitui
+# isto enquanto não estiver confirmado ligado).
+#
+# ── zizmor + actionlint ──
+# actionlint (acrescentado a 2026-09-25) corre no mesmo job: valida o YAML
+# contra o schema do GitHub e passa o shellcheck pelos blocos `run:` — o
+# update-profile-widgets.yml tem 9, e nada os verificava.
+#
+# Analisa .github/workflows com zizmor (https://github.com/zizmorcore/zizmor):
+# deteta permissoes excessivas, actions nao fixadas e template-injection via
+# ${{ }} em steps `run:` — os riscos reais de um workflow com contents:write
+# e acesso a secrets.GITHUB_TOKEN. Apenas leitura, nao interfere com o
+# update-profile-widgets.yml.
+#
+# Sem filtro de `paths` (removido 2026-07-30, follow-up à revisão de
+# segurança de CI/CD): o job `zizmor` é um status check obrigatório no
+# ruleset de `main`. Um check obrigatório que só corre quando os workflows
+# mudam fica "Expected — Waiting for status" para sempre em qualquer PR que
+# não toque em .github/workflows/**, bloqueando o merge sem nunca resolver
+# — só desbloqueável com bypass. Correr sempre custa uns segundos de CI
+# (install + scan) e garante que o check obrigatório de facto conclui em
+# toda PR, não só nas que mexem em workflows.
+#
+# `schedule` + `workflow_dispatch` mantidos como reforço: apanham uma regra
+# nova do zizmor ou uma mudança de comportamento numa action já usada, sem
+# depender de haver uma PR a correr nessa altura.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "30 6 * * 1" # semanal, a seguir ao update-profile-widgets.yml
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  zizmor:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Instalar zizmor
+        # Versão cravada, como no personal-site (security.yml): a 1.27.0
+        # foi retirada do PyPI por advisory de segurança
+        # (GHSA-f42p-wjw5-97qh) — sem pin, cada execução corre uma versão
+        # diferente e sem aviso. --require-hashes (revisão de segurança de
+        # CI/CD, follow-up 2026-07-30 — achado do OpenSSF Scorecard,
+        # Pinned-Dependencies) vai além do pin de versão: verifica o
+        # download contra os hashes em zizmor-requirements.txt antes de
+        # instalar, para que servir um artefacto diferente sob o mesmo
+        # número de versão falhe, em vez de instalar sem aviso.
+        run: pip install --require-hashes -r .github/zizmor-requirements.txt
+      - name: Analisar workflows
+        env:
+          # permite as auditorias online (ex.: deteção de commits impostores)
+          GH_TOKEN: ${{ github.token }}
+        # --min-severity medium: mesmo gate do personal-site (security.yml).
+        run: zizmor --min-severity medium .github/workflows/
+      - name: Instalar actionlint (versão fixa + checksum)
+        # O zizmor audita propriedades de segurança; o actionlint valida o
+        # YAML contra o schema do GitHub e corre o shellcheck em cada bloco
+        # `run:` — outra classe de erro (achou dois a 2026-09-25). Mesma
+        # versão do honeypot-vps-infra e do github-stars; aqui linux_amd64
+        # (runner hospedado). Checksum conferido contra o
+        # actionlint_1.7.12_checksums.txt oficial.
+        run: |
+          set -euo pipefail
+          curl -fsSL -o "$RUNNER_TEMP/actionlint.tar.gz" \
+            https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz
+          echo "8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8  $RUNNER_TEMP/actionlint.tar.gz" | sha256sum -c -
+          tar xzf "$RUNNER_TEMP/actionlint.tar.gz" -C "$RUNNER_TEMP" actionlint
+      - name: actionlint
+        # -shellcheck explícito e falha se não existir: sem shellcheck no
+        # PATH o actionlint salta os blocos `run:` sem avisar — foi o que
+        # aconteceu no homelab até 2026-09-16.
+        run: |
+          set -euo pipefail
+          sc="$(command -v shellcheck)" || { echo "::error::shellcheck não está no PATH — o actionlint saltaria os blocos run:"; exit 1; }
+          "$RUNNER_TEMP/actionlint" -color -shellcheck="$sc"
+      - name: Verificar nomes dos workflows
+        # Mesmo script, byte a byte, em todos os repos da conta — ver o
+        # cabeçalho dele.
+        run: bash .github/scripts/check-workflow-names.sh

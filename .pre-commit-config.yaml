@@ -1,0 +1,19 @@
+# Local git hooks — catch secrets BEFORE they leave the machine (the
+# gitleaks job in .github/workflows/security.yml checks again; this is
+# the first line, not a replacement for it).
+#
+# Activation (once, at the repo root):
+#   pipx install pre-commit        # or: pip install --user pre-commit
+#   pre-commit install
+#
+# From then on gitleaks runs automatically on every `git commit`.
+# To run by hand against everything: pre-commit run --all-files
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    # A full commit SHA, not the tag: a tag can be re-pointed upstream, a
+    # SHA cannot. Same pinning convention security.yml uses for gitleaks-action.
+    # `# frozen:` is pre-commit's own marker (`autoupdate --freeze`), which
+    # keeps the human-readable version next to it.
+    rev: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e  # frozen: v8.30.1
+    hooks:
+      - id: gitleaks

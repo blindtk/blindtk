@@ -126,7 +126,7 @@ and committed to `assets/` — no live third-party endpoint is queried when
 someone loads this profile.
 
 This repo's own CI/CD is scored by
-[OpenSSF Scorecard](.github/workflows/scorecard.yml) — pinned actions,
+[OpenSSF Scorecard](.github/workflows/security-scorecard.yml) — pinned actions,
 minimal per-job permissions, branch protection with required review — the
 same controls this profile talks about, applied to the workflow that
 maintains it.

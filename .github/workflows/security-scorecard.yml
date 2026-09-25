@@ -1,4 +1,4 @@
-name: OpenSSF Scorecard
+name: security-scorecard
 
 # Publica um badge de segurança de supply-chain (pins por SHA, permissões
 # mínimas, branch protection, …) na Security tab do repo — grátis em
