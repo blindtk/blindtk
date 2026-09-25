@@ -39,4 +39,19 @@
   pip_requirements: {
     managerFilePatterns: ['/^\\.github/zizmor-requirements\\.txt$/'],
   },
+  customManagers: [
+    {
+      // actionlint vem de um URL de release com versão E sha256 literais;
+      // nenhum manager nativo o vê. A PR do Renovate avisa da versão nova —
+      // o checksum é sempre conferido por um humano contra o
+      // actionlint_<versão>_checksums.txt oficial.
+      customType: 'regex',
+      description: 'actionlint release pin in security.yml',
+      managerFilePatterns: ['/^\\.github/workflows/security\\.yml$/'],
+      matchStrings: ['actionlint/releases/download/v(?<currentValue>[0-9.]+)/'],
+      datasourceTemplate: 'github-releases',
+      depNameTemplate: 'rhysd/actionlint',
+      extractVersionTemplate: '^v(?<version>.*)$',
+    },
+  ],
 }
