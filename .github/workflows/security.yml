@@ -55,9 +55,16 @@ on:
 
 permissions: {}
 
+# Um push novo numa PR cancela a corrida anterior dessa PR; fora de PRs o
+# grupo é o próprio run, para push/cron nunca se cancelarem entre si.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   gitleaks:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: read
       pull-requests: read
@@ -72,6 +79,7 @@ jobs:
 
   zizmor:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: read
     steps:
